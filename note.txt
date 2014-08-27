@@ -1,0 +1,38 @@
+
+rule:
+ state: n
+ (state,3^2) -> (state,3)
+ (n*9)*log(n*3)
+
+{
+  "param":{
+    "dimention":8,
+    "rewardk1":0.9,
+    "correct_k1":0.1,
+    "correct_k2":0.4
+  },
+  "bots":[
+  {
+    "predict":0,
+    "state":0,
+    "food":0,
+    "rule":[0,0,0,0,0,0,0,0]
+  },
+  {
+    "predict":0,
+    "state":0,
+    "food":0,
+    "rule":[0,0,0,0,0,0,0,0]
+  }
+  ],
+  
+}
+0: lose
+1: draw
+2: win
+
+0: rock
+1: paper
+2: scisser
+
+
