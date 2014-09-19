@@ -2,23 +2,34 @@
 <html lang="en">
   <head>
     <title>Test page</title>
-    <script src="src/main.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="main2.js"></script>
+    <script src="main3.js"></script>
+    <script src="main4.js"></script>
+    <script type="text/javascript" charset="utf-8">
+    </script>
+
+    <link rel="stylesheet" href="css.css">
   </head>
   <body>
-  <div>
-    <button onclick="test(bot_tree1,0)">rock</button>
-    <button onclick="test(bot_tree1,1)">paper</button>
-    <button onclick="test(bot_tree1,2)">scisser</button>
-  </div>
-  <div id="notification">
+    <div>
+      <button class="hum-bot" onclick="test(0)"><image src="rps_r1.jpg"></button>
+      <button class="hum-bot" onclick="test(1)"><image src="rps_p1.jpg"></button>
+      <button class="hum-bot" onclick="test(2)"><image src="rps_s1.jpg"></button>
+    </div>
+    <div id="dis-hum" style="float:left;"><image src="rps_r1.jpg"></div>
+    <div id="dis-bot" style="float:left;"><image src="rps_r2.jpg"></div>
+    <script type="text/javascript" charset="utf-8">
+    </script>
+    <div id="notification">
 
-  </div>
-  <div id="summary">
+    </div>
+    <div id="summary">
 
-  </div>
-  <div id="result">
+    </div>
+    <div id="result">
 
-  </div>
+    </div>
 
   </body>
 </html>

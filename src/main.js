@@ -180,7 +180,8 @@ var rps_game={
   }
   */
 };
-bot_tree1=bot_tree({"game":rps_game,"count_init":4});
+
+bot_tree1=bot_tree({"game":rps_game,"count_init":1});
 var count=[0,0,0];
 function test(bot,choice){
   var result=(bot.predict-choice+4)%3;
