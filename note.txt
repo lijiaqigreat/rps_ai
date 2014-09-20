@@ -1,4 +1,70 @@
+component:
+ main:Class
+  params:
+   bot
+   hand
+   history:array(roundR)
 
+    
+  render:
+   r,p,s -> set({hand:?})
+   result <- 
+ roundM:model
+  params:
+   p1,p2
+  render:
+   p1
+   p2
+   result
+    
+
+
+ controller:
+  r,p,s
+  setting
+ view:
+  human,robot
+  win/lose
+  setting
+  history
+model:
+ main:
+  
+  
+file:
+ vender
+ index.html
+ //partial
+ js
+ css
+ bots
+ asset
+ test
+gulp:
+ test (mocha)
+ serve
+ lint
+ build:
+  minify
+ 
+
+
+
+
+use case:
+ r,p,s:
+  model:
+   b: webpage calculate robot hand
+  view:
+   c: webpage animate the round
+   d: webpage display result
+   e: webpage update result history and stats
+ 2:
+  a: user update setting
+  b: webpage update setting
+  c: webpage clears histoy and stats
+  d: reinitialize 
+  
 rule:
  state: n
  (state,3^2) -> (state,3)

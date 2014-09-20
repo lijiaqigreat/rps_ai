@@ -11,26 +11,12 @@ var SRC='src';
 var DIST='dist';
 var jade_json_name='json';
 
-gulp.task('jshint', function(){
-  return gulp.src(SRC+'/**/*.js')
-    .pipe($.jshint())
-    .pipe($.jshint.reporter('jshint-stylish'));
-});
-gulp.task('js', function () {
-  return gulp.src(SRC+'/**/*.js')
-    .pipe($.cached('js',['optimizeMemory']))
-    //.pipe($.uglify())
-    .pipe($.concat('all.js'))
-    .pipe(gulp.dest('./'))
-    .pipe($.size({title: 'js'}));
-});
-
 gulp.task('clean', function(cb) {
   $.cached.caches={};
 });
 
 gulp.task('build',function(){
-  runSequence(['js']);
+  runSequence([]);
 });
 
 
@@ -43,5 +29,5 @@ gulp.task('serve', ['build'], function () {
       baseDir: ['./']
     }
   });
-  gulp.watch([SRC+'/**/*.js'], ['js',reload]);
+  gulp.watch(['index.html','js','css','bots','asset','vender'], [reload]);
 });

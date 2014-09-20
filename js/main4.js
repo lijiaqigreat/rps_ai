@@ -2,8 +2,8 @@ var tmp=["r","p","s"];
 var image_hum=Array(3);
 var image_bot=Array(3);
 for(var i=0;i<3;i++){
-  image_hum[i]=$("<image src=\"rps_"+tmp[i]+"1.jpg\">")[0];
-  image_bot[i]=$("<image src=\"rps_"+tmp[i]+"2.jpg\">")[0];
+  image_hum[i]=$("<image src=\"asset/rps_"+tmp[i]+"1.jpg\">")[0];
+  image_bot[i]=$("<image src=\"asset/rps_"+tmp[i]+"2.jpg\">")[0];
 }
 var home={
   'bot':env.bots.markov.init()
