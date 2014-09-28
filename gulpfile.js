@@ -14,9 +14,20 @@ var jade_json_name='json';
 gulp.task('clean', function(cb) {
   $.cached.caches={};
 });
+gulp.task('css', function () {
+  src.styles = 'css/**/*.{css,less}';
+  return gulp.src('src/styles/bootstrap.less')
+    .pipe($.plumber())
+    .pipe($.less({sourceMap: !RELEASE, sourceMapBasepath: __dirname}))
+    .on('error', $.util.log)
+    .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))
+    .pipe($.csscomb())
+    .pipe($.if(RELEASE, $.minifyCss()))
+    .pipe(gulp.dest(DEST + '/css'))
+    .pipe($.if(watch, reload({stream: true})));
+});
 
 gulp.task('build',function(){
-  runSequence([]);
 });
 
 

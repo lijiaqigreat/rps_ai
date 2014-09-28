@@ -1,25 +1,52 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Test page</title>
-    <link rel="stylesheet" href="css.css">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SLU Computer Programming Club</title>
+    <link rel="icon" href="images/logo_16x16.jpg">
+    <!-- Bootstrap-->
+    <link rel='stylesheet', href='vendor/bootstrap/css/bootstrap.min.css'>
+    <!-- link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/darkly/bootstrap.min.css" -->
+    <link rel="stylesheet" href="/css/css.css">
   </head>
   <body>
-    <div id="main">
-    </div>
-    
-  
-    <div id="notification">
+    <div class="container" id="main">
+      <div id="game">
+        <div id="g_hand">
+          <button class="gh col-xs-4" id="gh_0" onclick="rps.choose(0)"></button>
+          <button class="gh col-xs-4" id="gh_1" onclick="rps.choose(1)"></button>
+          <button class="gh col-xs-4" id="gh_2" onclick="rps.choose(2)"></button>
+        </div>
+        <div id="g_result">
+          <div class="gr col-xs-6 h_0" id="gr_0">
+          </div>
+          <div class="gr col-xs-6" id="gr_1">
+          </div>
+        </div>
+        <div id="g_hist">
+        </div>
+        <div id="g_stat">
+        </div>
+      </div>
+      <div id="bot">
+        <div id="b_status">
+        </div>
+        
+      </div>
+      <div id="intro" class="name">
+        
+      </div>
 
     </div>
-    <div id="summary">
-    
-    </div>
-    <div id="result">
-    
-    </div>
-    <script src="vender/jquery.min.js"></script>
-    <script src="vender/react.js"></script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins)-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="/dist/lib/jquery-2.1.0.min.js"><\/script>')</script>
+    <!-- Include all compiled plugins (below), or include individual files as needed-->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="vendor/react.js"></script>
     <script src="js/app.js"></script>
+    <!--script src="vendor/jquery.min.js"></script-->
   </body>
 </html>

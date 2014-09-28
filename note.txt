@@ -1,4 +1,38 @@
-component:
+TODO:
+ refactor markov
+ask:
+
+ 
+UI:
+ game:
+  doc:
+   intro
+   links
+  game:
+   rps
+   result
+   stat
+   history
+  control:
+   restart
+   import button
+   bot code
+   bot stats
+requirement:
+ UI:
+  control:
+   choose bot
+   choose param
+   choose training
+   choose choice
+   submit or not
+  view:
+   see bot thoughts?
+   see history
+   see action
+
+
+model:
  main:Class
   params:
    bot
