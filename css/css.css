@@ -13,13 +13,13 @@ button.gh{
   background-repeat: no-repeat;
 }
 #gh_0{
-  background-image:url("/asset/rps_r0.jpg");
+  background-image:url("asset/rps_r0.jpg");
 }
 #gh_1{
-  background-image:url("/asset/rps_p0.jpg");
+  background-image:url("asset/rps_p0.jpg");
 }
 #gh_2{
-  background-image:url("/asset/rps_s0.jpg");
+  background-image:url("asset/rps_s0.jpg");
 }
 .gr{
   padding-top: 30%;
@@ -41,21 +41,21 @@ button.gh{
 
 /*
 #gr_0.h_0{
-  background-image:url("/asset/rps_r0.jpg");
+  background-image:url("asset/rps_r0.jpg");
 }
 #gr_0.h_1{
-  background-image:url("/asset/rps_p0.jpg");
+  background-image:url("asset/rps_p0.jpg");
 }
 #gr_0.h_2{
-  background-image:url("/asset/rps_s0.jpg");
+  background-image:url("asset/rps_s0.jpg");
 }
 #gr_1.h_0{
-  background-image:url("/asset/rps_r1.jpg");
+  background-image:url("asset/rps_r1.jpg");
 }
 #gr_1.h_1{
-  background-image:url("/asset/rps_p1.jpg");
+  background-image:url("asset/rps_p1.jpg");
 }
 #gr_1.h_2{
-  background-image:url("/asset/rps_s1.jpg");
+  background-image:url("asset/rps_s1.jpg");
 }
 */
