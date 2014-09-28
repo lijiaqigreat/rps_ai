@@ -15,9 +15,9 @@ var rps=function(){
   });
   var roundsR=React.createClass({
     render: function (){
-      var list=this.props.list.reverse().map(function(h01){
+      var list=this.props.list.map(function(h01){
         return new roundR({h0:h01%3,h1:(h01/3)|0});
-      });
+      }).reverse();
       return React.DOM.div({},list);
     }
   });
