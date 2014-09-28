@@ -6,10 +6,10 @@ var rps=function(){
     render: function (){
       return React.DOM.div(
         {className: "col-sm-6 col-md-4 col-lg-2 roundR"},
-        React.DOM.div({className: "col-xs-4 roundRc",style:{"background-image":"url('/asset/rps_"+rps.consts.abbr[this.props.h0]+"0.jpg')"}}),
+        React.DOM.div({className: "col-xs-4 roundRc",style:{"background-image":"url('asset/rps_"+rps.consts.abbr[this.props.h0]+"0.jpg')"}}),
         React.DOM.div({className: "col-xs-4"},rps.consts.result[(this.props.h1-this.props.h0+3)%3]),
-        React.DOM.div({className: "col-xs-4 roundRc",style:{"background-image":"url('/asset/rps_"+rps.consts.abbr[this.props.h1]+"1.jpg')"}})
-        //React.DOM.img({src: "/asset/rps_"+rps.consts.abbr[this.props.h1]+"1.jpg"})
+        React.DOM.div({className: "col-xs-4 roundRc",style:{"background-image":"url('asset/rps_"+rps.consts.abbr[this.props.h1]+"1.jpg')"}})
+        //React.DOM.img({src: "asset/rps_"+rps.consts.abbr[this.props.h1]+"1.jpg"})
       );
     }
   });
