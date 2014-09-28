@@ -221,6 +221,13 @@ var rps=function(){
       //update history
       React.renderComponent(new roundsR({list:this.history}),$("#g_hist")[0]);
       //update stat
+      var count=[0,0,0];
+      this.history.forEach(function(h01){
+        var h0=h01%3;
+        var h1=(h01/3)|0;
+        count[(h1-h0+3)%3]++;
+      });
+      React.renderComponent(React.DOM.div({className:"col-xs-12"},"win: "+count[2]+",tie: "+count[0]+",lose: "+count[1]),$("#g_stat")[0]);
     },
     bot:bots.markov.init(),
     bots:bots,
