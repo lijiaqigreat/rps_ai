@@ -13,13 +13,13 @@ button.gh{
   background-repeat: no-repeat;
 }
 #gh_0{
-  background-image:url("asset/rps_r0.jpg");
+  background-image:url("../asset/rps_r0.jpg");
 }
 #gh_1{
-  background-image:url("asset/rps_p0.jpg");
+  background-image:url("../asset/rps_p0.jpg");
 }
 #gh_2{
-  background-image:url("asset/rps_s0.jpg");
+  background-image:url("../asset/rps_s0.jpg");
 }
 .gr{
   padding-top: 30%;
