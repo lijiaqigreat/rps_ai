@@ -1,27 +1,31 @@
-# Requirement
-
-## Types of Requirement
+# Types of Requirement
 
 - **M** Mandatory requirement.
 - **D** Desirable requirement.
 - **O** Optional requirement.
 - **E** Possible future enhancement
 
-## Requirements
+# Requirements
 
-- **M** User should be able to play the game with robot
+- [ ] **M** User should be able to play the game with robot
 
-- **M** User should see the result, history of result, basic statistics
+- [ ] **M** User should see the result, history of result, basic statistics
 
-- **D** User should be able to choose different robot
+- [ ] **M** App should look clean, proffessional
 
-- **O** User should be able to configure robot with different parameters
+- [ ] **D** Robot should beat most users more than half times
 
-- **O** App should be able to save game data in cookie
+- [ ] **D** User should be able to choose different robot
 
-- **E** App should be able to collect game data
+- [ ] **O** User should be able to configure robot with different parameters
 
-- **E** User should be able to pretrain robot with data
+- [ ] **O** App should be able to save game data in cookie
+
+- [ ] **E** App should be able to collect game data
+
+- [ ] **E** User should be able to pretrain robot with data
+
+- [ ] **E** App should sandbox the robots resistricting them to cheat
 
 
 
