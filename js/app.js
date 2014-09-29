@@ -2,7 +2,10 @@ var rps=function(){
   var randomInt=function(n){
     return Math.random()*n | 0;
   };
-  var roundR=React.createClass({
+
+
+  var roundR=React.createClass(
+  {
     render: function (){
       return React.DOM.div(
         {className: "col-xs-6 col-md-4 col-lg-2 roundR"},
@@ -13,7 +16,8 @@ var rps=function(){
       );
     }
   });
-  var roundsR=React.createClass({
+  var roundsR=React.createClass(
+  {
     render: function (){
       var list=this.props.list.map(function(h01){
         return new roundR({h0:h01%3,h1:(h01/3)|0});
@@ -21,8 +25,10 @@ var rps=function(){
       return React.DOM.div({},list);
     }
   });
-  var bots={
-    template:{
+  var bots=
+  {
+    template:
+    {
       defaultParam:{},
       init:function(param, data){
         var react=React.createClass({
@@ -49,8 +55,10 @@ var rps=function(){
         };
       }
     },
-    markov:{
-      default_param:{
+    markov:
+    {
+      default_param:
+      {
         max_level:4,
         decay:0.9,
         node:{
@@ -58,12 +66,17 @@ var rps=function(){
           children:Array(9)
         }
       },
-      init:function(param){
+      init:function(param)
+      {
         if(param===undefined){
           param=this.default_param;
         }
         return {
-          getHand:function(){
+          getHand:function()
+          {
+            if(this._private.history[0]===undefined){
+              return randomInt(3);
+            }
             //update predict
             //return standard diviation
             var get_score=function(count){
@@ -94,7 +107,7 @@ var rps=function(){
               }
             }
             var fr=function(count){
-             var max=0;
+              var max=0;
               var maxi=-1;
               for(var i=0;i<3;i++){
                 if(count[i]>max){
@@ -106,7 +119,8 @@ var rps=function(){
             }(best_count);
             return (fr+this._private.h_last)%3;
           },
-          update:function(h0,h1){
+          update:function(h0,h1)
+          {
             //relative to last hand
             h0r=(h0-this._private.h_last+3)%3;
             h1r=(h1-this._private.h_last+3)%3;
@@ -139,7 +153,8 @@ var rps=function(){
             this._private.h_last=h0;
 
           },
-          getReact:function(){
+          getReact:function()
+          {
             var f="";
             var printnode=function(node,depth){
               f+=depth;
@@ -155,7 +170,8 @@ var rps=function(){
             printnode(this._private.node,"");
             return React.DOM.textarea({},f);
           },
-          _private:{
+          _private:
+          {
             h_last:0,
             //his[i]=c_hum * 3 + c_bot relative to his[i+1]
             history:Array(param.max_level),
@@ -184,33 +200,39 @@ var rps=function(){
           }
         };
       },
-      train:function(param,data){
+      train:function(param,data)
+      {
         //TODO
         return this.init(param);
       },
-      _private:{
+      _private:
+      {
       }
     }
   };
   return {
     //data
-    consts:{
+    consts:
+    {
       abbr:["r","p","s"],
       result:["TIE","LOSE","WIN"]
     },
     //model functions
-    choose:function(h0){
+    choose:function(h0)
+    {
       //update model
       var h1=this.bot.getHand();
       this.bot.update(h0,h1);
       this.history.push(h0+h1*3);
       this.updateView();
     },
-    reset:function(){
+    reset:function()
+    {
       this.history=[];
     },
     //update view
-    updateView:function(){
+    updateView:function()
+    {
       var h01=this.history[this.history.length-1];
       var h0=h01%3;
       var h1=(h01/3)|0;

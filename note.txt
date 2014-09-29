@@ -1,6 +1,13 @@
 TODO:
-ask:
-
+ make it pretty
+ choose bot
+ add link for doc
+ markov:
+  handle edge case: count has 1+ maximums
+  improve function get_score(count)
+Scannel:
+  show app
+  not showing thoughts
  
 UI:
  game:
@@ -17,62 +24,16 @@ UI:
    import button
    bot code
    bot stats
-requirement:
- UI:
-  control:
-   choose bot
-   choose param
-   choose training
-   choose choice
-   submit or not
-  view:
-   see bot thoughts?
-   see history
-   see action
 
-
-model:
- main:Class
-  params:
-   bot
-   hand
-   history:array(roundR)
-
-    
-  render:
-   r,p,s -> set({hand:?})
-   result <- 
- roundM:model
-  params:
-   p1,p2
-  render:
-   p1
-   p2
-   result
-    
-
-
- controller:
-  r,p,s
-  setting
- view:
-  human,robot
-  win/lose
-  setting
-  history
-model:
- main:
-  
-  
 file:
  vender
  index.html
- //partial
  js
  css
  bots
  asset
  test
+ doc
 gulp:
  test (mocha)
  serve
