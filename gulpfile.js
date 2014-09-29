@@ -10,11 +10,16 @@ var reload = browserSync.reload;
 var SRC='src';
 var DIST='dist';
 var jade_json_name='json';
+var ext_replace=require('gulp-ext-replace');
+var fs = require('fs');
 
-gulp.task('clean', function(cb) {
+gulp.task('clean', function(cb)
+{
   $.cached.caches={};
 });
-gulp.task('css', function () {
+
+gulp.task('css', function () 
+{
   src.styles = 'css/**/*.{css,less}';
   return gulp.src('src/styles/bootstrap.less')
     .pipe($.plumber())
@@ -27,7 +32,21 @@ gulp.task('css', function () {
     .pipe($.if(watch, reload({stream: true})));
 });
 
-gulp.task('build',function(){
+gulp.task('doc',function()
+{
+  var header=fs.readFileSync(__dirname + '/doc/header.html').toString();
+  var footer=fs.readFileSync(__dirname + '/doc/footer.html').toString();
+  gulp.src('doc/**/*.md')
+  .pipe($.marked())
+  .pipe($.wrapper({
+    header:header,
+    footer:footer
+  }))
+  .pipe(ext_replace('.html'))
+  .pipe(gulp.dest('doc'));
+});
+
+gulp.task('build',['doc'],function(){
 });
 
 
@@ -40,5 +59,6 @@ gulp.task('serve', ['build'], function () {
       baseDir: ['./']
     }
   });
-  gulp.watch(['index.html','js','css','bots','asset','vender'], [reload]);
+  gulp.watch(['index.html','js','css','bots','asset','vendor'], [reload]);
+  gulp.watch(['doc/*.md'],['doc',reload]);
 });
