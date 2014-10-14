@@ -11,7 +11,7 @@
 
 - [ ] **M** User should see the result, history of result, basic statistics
 
-- [ ] **M** App should look clean, proffessional
+- [ ] **M** App should look clean, professional
 
 - [ ] **D** Robot should beat most users more than half times
 
@@ -22,6 +22,7 @@
 - [ ] **O** App should be able to save game data in cookie
 
 - [ ] **E** App should be able to collect game data
+
 
 - [ ] **E** User should be able to pretrain robot with data
 

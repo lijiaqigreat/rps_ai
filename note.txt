@@ -1,5 +1,7 @@
 TODO:
  make it pretty
+ add intro
+ cache image
  choose bot
  add link for doc
  markov:
@@ -8,6 +10,16 @@ TODO:
 Scannel:
   show app
   not showing thoughts
+pages:
+ index
+ docs:
+  requirement
+  design
+  bot descriptions
+  about?
+
+LOGO:
+  
  
 UI:
  game:

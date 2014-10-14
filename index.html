@@ -12,7 +12,39 @@
     <link rel="stylesheet" href="css/css.css">
   </head>
   <body>
+    <div role="navigation" class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="#" class="navbar-brand">
+            Rock Paper Scisser with AI
+          </a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="#">HOME</a></li>
+            <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">DOCS<span class="caret"></span></a>
+              <ul role="menu" class="dropdown-menu">
+                <li><a href="doc/requirement.html">Requirement</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="https://github.com/lijiaqigreat/rps_ai">View on Github</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
     <div class="container" id="main">
+      <div id="intro">
+        <p>This is a rock paper scisser game</p>
+        <a href="doc/requirement.html">link</a>
+      </div>
       <div id="game">
         <div id="g_hand">
           <button class="gh col-xs-4" id="gh_0" onclick="rps.choose(0)"></button>
