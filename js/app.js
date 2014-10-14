@@ -60,7 +60,7 @@ var rps=function(){
       default_param:
       {
         max_level:4,
-        decay:0.9,
+        decay:0.7,
         node:{
           count:[0,0,0],
           children:Array(9)
