@@ -1,0 +1,78 @@
+.wasteland{
+  position: absolute;
+  top: -100000px;
+}
+button.gh{
+  width:100%;
+  background-color:#ffffff;
+  background-repeat: no-repeat;
+}
+img{
+  width:100%;
+  height:auto;
+}
+
+.roundR{
+  background-size: 100% 100%;
+}
+.roundRc{
+}
+
+/*
+#gr_0.h_0{
+  background-image:url("asset/rps_r0.jpg");
+}
+#gr_0.h_1{
+  background-image:url("asset/rps_p0.jpg");
+}
+#gr_0.h_2{
+  background-image:url("asset/rps_s0.jpg");
+}
+#gr_1.h_0{
+  background-image:url("asset/rps_r1.jpg");
+}
+#gr_1.h_1{
+  background-image:url("asset/rps_p1.jpg");
+}
+#gr_1.h_2{
+  background-image:url("asset/rps_s1.jpg");
+}
+*/
+.zbox{
+  border-radius:8px;
+  border: solid 1px #000000;
+  padding:0.32em;
+
+}
+.zscore tbody tr td,.zscore thead tr td{
+  text-align:center;
+}
+.zscore{
+  margin-bottom:0px;
+}
+.navbar-toggle .icon-bar{
+  width:15px;
+}
+.zhistory{
+  overflow:auto;
+  height:200px;
+}
+.zroundr{
+  display:flex;
+}
+.zroundrc{
+  flex:1;
+  text-align:center;
+}
+#g_stat{
+  box-sizing:border-box;
+  display:flex;
+}
+.zcell{
+  padding-left:5px;
+  padding-right:5px;
+  box-sizing:border-box;
+}
+.zroundrc span{
+}
+
