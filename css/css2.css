@@ -61,7 +61,7 @@ img{
   display:flex;
 }
 .zroundrc{
-  flex:1;
+  -webkit-flex:1;
   text-align:center;
 }
 #g_stat{
