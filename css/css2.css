@@ -59,14 +59,23 @@ img{
 }
 .zroundr{
   display:flex;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flexbox;
 }
 .zroundrc{
-  -webkit-flex:1;
+  flex:1;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -webkit-flex: 1;
   text-align:center;
 }
 #g_stat{
   box-sizing:border-box;
   display:flex;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flexbox;
 }
 .zcell{
   padding-left:5px;
