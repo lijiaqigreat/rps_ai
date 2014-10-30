@@ -5,9 +5,12 @@
   "main": "",
   "devDependencies": {
     "gulp": "^3.8.9",
+    "gulp-browserify": "^0.5.0",
     "gulp-cached": "^1.0.1",
     "gulp-ext-replace": "^0.1.0",
+    "gulp-load-plugins": "^0.7.0",
     "gulp-marked": "^0.2.0",
+    "gulp-uglify": "^1.0.1",
     "gulp-wrapper": "^0.1.5"
   }
 }

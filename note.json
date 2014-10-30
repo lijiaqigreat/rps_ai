@@ -1,0 +1,392 @@
+{
+  "ask":
+  {
+  },
+  "TODO":
+  {
+    "important":
+    {
+      "doc":"jsdoc",
+      "module":"browserify",
+      "worker":"generic module",
+      "test":"jasmine + phantomjs",
+      "bot":"api"
+    },
+    "bot api":
+    [
+      "always use worker",
+      "handle error",
+      "handle not ready",
+      "enforce time? no",
+      "able to debug",
+      "able to be transparent"
+    ]
+  },
+  "design":
+  {
+    "datastore":
+    {
+      "independent":
+      {
+        "turn":
+        {
+          "hand":"int",
+          "time":"int"
+        },
+        "game":
+        {
+          "date":"data",
+          "person":"??",
+          "stats":"??",
+          "browser":"String",
+          "robot":"??",
+          "robot param":"??"
+        },
+        "person":
+        {
+          "info":"??",
+          "id":"??",
+          "stats":
+          {
+            "basic":"??"
+          }
+        },
+
+        "global":
+        {
+          "stats":"??"
+        }
+      },
+      "draft1":
+      {
+        "game":
+        {
+          "bot":"Key",
+          "person":"Key",
+          "date":"date",
+          "turns":"blob",//big
+          "times":"blob"//big
+        },
+        "person":
+        {
+          "stat":"any"//always update
+        },
+        "bot":
+        {
+          "name":"filename",
+          "paramters":"any",
+          "lastUpdate":"date",
+          "data":"blob"//big
+        },
+        "personal_bot":
+        {
+          "bot":"Key",
+          "person":"Key",
+          "date":"date",
+          "data":"blob"//big
+        }
+      },
+      "draft2":
+      {
+        "note1":
+        [
+          "server saves data",
+          "client retrieves data and not-yet-used-game, update data, upload data",
+          "client retrieves data, plays game, upload game",
+          "server keeps newest data, backup older data"
+        ],
+        "pro":
+        {
+          "simpler design":
+          {
+            "no global, user difference":"",
+            "simpler robot":"",
+            "robot is 100% javascript":"",
+            "simpler datastore":""
+          }
+        },
+        "con":
+        {
+          "no data for new user":
+          {
+            "no game data stored for new user":"",
+            "can be fix by adding random anonymous data":""
+          },
+          "user data cannot interact":
+          {
+            "more restriction to algorithm":"",
+            "cannot exploit more data":""
+          },
+          "malicious client can mess up data":
+          {
+            "advanced server can check against it":""
+          }
+        },
+        "data":
+        {
+          "game":
+          {
+            "person":"Key",
+            "bot":"Key",
+            "date":"date",
+            "data-date":"date",
+            "turns":"blob",//big
+            "times":"blob"//big
+          },
+          "person":
+          {
+            "stat":"any"//always update
+          },
+          "bot":
+          {
+            "name":"String",
+            "paramters":"json",
+            "stat":"any"
+          },
+          "person-bot":
+          {
+            "bot":"Key",
+            "person":"Key",
+            "latest":"date",
+            "firstCreate":"date",
+            "stat":"any"
+          },
+          "person-bot-data":
+          {
+            "person":"Key",
+            "bot":"Key",
+            "date":"date",
+            "data":"blob"//big
+          }
+        },
+        "communication":
+        {
+          "input":
+          {
+            "bot":
+            {
+              "format":"js",
+              "lifetime":"long",
+              "source":"server,external"
+            },
+            "param":
+            {
+              "format":"json",
+              "lifetime":"long",
+              "source":"client"
+            },
+            "server":
+            {
+              "format":"json",
+              "lifetime":"short",
+              "source":"server",
+              "content":["data","games","meta"]
+            }
+          },
+          "output":
+          {
+            "game":"server,blob",
+            "data":"server,blob"
+          },
+          "bot":
+          {
+            "init":["param,data","bot"],
+            "train":["param,data,games","data"],
+            "update":["bot,turn","bot"],
+            "predict":["bot","choice"]
+          }
+        },
+        "fixed bot param":
+        {
+          "updateType":
+          {
+            "incremental":
+            {
+              "n oldest unseen games":""
+            },
+            "full":
+            {
+              "n newest games":""
+            }
+          },
+          "starterGames"://actually copy game
+          {
+            "user":
+            [
+              "n latest games with the same user"
+            ],
+            "bot":
+            [
+              "n latest games with the same bot"
+            ]
+          }
+        },
+        "httpapi":
+        {
+          "post data":
+          {
+            "send":
+            {
+              "uri":"",
+              "param":"",
+              "data":"",
+              "date":""
+            },
+            "recieve":
+            {
+            }
+          },
+          "get data":
+          {
+            "send":
+            {
+              "uri":"",
+              "param":
+              {
+              },
+              "strategy":
+              {
+                "":"load games according to param.updateType",
+                "data":"only load data"
+              },
+              "fill strategy":
+              {
+                "anonymous":""
+              }
+            }
+          }
+        },
+        "async analysis":
+        {
+          "note":
+          {
+            "for now, serial":""
+          },
+          "get":
+          {
+            "http-page":[],
+            "http-preload":["http-page"],
+            "http-bot":["rps.setupLoad"],
+            "http-data":["rps.setupLoad"],
+            "http-games":["rps.botparam"],
+            "rps.botparam":["http-bot"],
+            "rps.uploadData":["worker..."],
+            "rps.bot":["rps.botparam","http-data","rps.getWorker"],
+            "updateView":["page"],
+            "bot-init":["bot","param","data"],
+            "train":["bot","param","data","games"],
+            "play":["train","bot-init"],
+            "data2":["train"],
+            "game":["play"]
+          },
+          "tmp":
+          {
+            "finish this.promise":"",
+            "postMessage":"finish",
+            "finish2":"",
+            "":""
+          },
+          "tmp2":
+          {
+            "rtn=x,rtnc?rtnc(x):null":"",
+            "rtnc=a,rtn?null:a(rtn)":""
+          }
+        },
+        "userapi":
+        {
+          "page":"",
+          "restart":"",
+          "change param":"",
+          "play":""
+        },
+        "":""
+      }
+    },
+    "client":
+    {
+    },
+    "ui":
+    {
+      "choice":"button",
+      "display":"",
+      "stat":"div",
+      "bot":
+      {
+        "reset":"button",
+        "change":"input"
+      },
+      "share":"div",
+      "link":"nav"
+    },
+    "server":
+    {
+      "draft":
+      {
+        "client":
+        {
+          "page":"html",
+          "bot":"js",
+          "data":"octet-stream"
+        }
+      }
+    }
+  },
+  "stat":
+  {
+    "game":
+    {
+      "longest win":"int",
+      "longest lost":"int",
+      "win count":"int",
+      "tie count":"int",
+      "lost count":"int",
+      "score":"double"
+    },
+    "person":
+    {
+      "longest win":"int",
+      "longest lost":"int",
+      "win rate":"double",
+      "tie rate":"double",
+      "lost rate":"double",
+      "score":"double"
+    }
+  },
+  "assumptions":
+  {
+    "no CS specialist plays the game":"",
+    "user cannot create custom parameter robot":"maybe"
+  },
+  "tmp":
+  {
+    "0.4B per turn":"",
+    "json fold":"http://www.bodurov.com/JsonFormatter/",
+    "cdn git":"rawgit.com",
+    "http":
+    {
+      //basic
+      "get bot":["name,param,person","data,newer games,time"],
+      "post upload_game":["game",""],
+      "post new data":["data,name,param,person,time,token",""],
+      //for fun
+      "get person":["personkey","stat"],
+      "get stat":["","stat"],
+      //maintain
+      "post update":["token",""]
+      //make
+    },
+    "java":
+    {
+      "bot_gen":
+      {
+        "updateg":"param,blob_g blob",//global
+        "updatep":"param,blob_p blob",//personal
+        "getbot":"param,blob_g,blob_p bot"
+      }
+    },
+    "server":
+    {
+      "custom logic to reject malacious request":""
+    }
+  }
+}

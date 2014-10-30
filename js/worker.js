@@ -1,10 +1,14 @@
-var promise=require("./promise");
-var _=require("./underscore");
-
+/**
+ * This provides a generic wrapper for web worker.
+ * It allows function call, debug
+ * @module js/worker
+ */
 window.URL = window.URL || window.webkitURL;
 window.BlobBuilder = window.BlobBuilder || window.WebKitBlobBuilder || window.MozBlobBuilder;
+var header="var exports={};var module={exports:exports,self:self};";
+var footer="(module.self.onmessage=function(e){module.exports[e.data[0]].apply(null,e.data.slice(1));};)";
 
-function onmessageHelper(e)
+var onmessageHelper=function (e)
 {
   if(e.data.debug){
     console.debug(e.data.debug);
@@ -15,12 +19,12 @@ function onmessageHelper(e)
   if(e.data.error){
     this._onerror(e.data.error);
   }
-}
-function onerrorHelper(e)
+};
+var onerrorHelper=function (e)
 {
   this.onerror(e.data);
-}
-function getWorker(str)
+};
+var getWorker=function (str)
 {
   // URL.createObjectURL
   //window.URL = window.URL || window.webkitURL;
@@ -38,11 +42,15 @@ function getWorker(str)
   worker.onmessage=onmessageHelper.bind(this);
   worker.onerror=onerrorHelper.bind(this);
   return worker;
-}
+};
 
 var proto=
 {
-   
+  /**
+   * this interrupts the worker and 
+   * @param {string} str js source of the worker. See {@link bots/template} to get api of the bot
+   * @return promise
+   */
   init:function(str)
   {
     this.stop();
@@ -73,16 +81,12 @@ var proto=
     return this.promise;
   }
 };
-  
-  
-module.exports=function()
+var workergen=function()
 {
-  var f={
-    worker:null,
-    promise:Promise.resolve(),
-    _onmessage:null,
-    _onerror:null,
-    
-  };
-  f.prototype=proto;
+  this.worker=null;
+  this.promise=Promise.resolve();
+  this._onmessage=null;
+  this._onerror=null;
 };
+workergen.prototype=proto;
+module.exports=workergen;

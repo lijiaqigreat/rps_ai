@@ -1,14 +1,32 @@
-var bot={
-  getPredict:function(){
-    return randomInt(3);
+/**
+ * A template of RPS Robot.
+ * All nessesary api are provided.
+ * It will be loaded by 
+ * @module bots/template
+ */
+module.exports={
+  running:false,
+  getHand:function(){
+    if(!this.running){
+      throw "not initialied yet";
+    }
+    return (Math.random()*3)|0;
   },
-  update:function(p1,p2){
+  update:function(h0,h1,dt)
+  {
+    if(!this.running){
+      throw "not initialied yet";
+    }
     return;
   },
-  //param is passed by reference
-  'init':function(param,data){
+  get_dataparam:function(param){
+    return {};
+  },
+  init:function(param,data){
+    this.running=true;
     return;
   },
-
-  '_private':{}
+  train:function(param,data,games){
+    return data;
+  },
 };

@@ -2,11 +2,9 @@
 
 // Include Gulp & Tools We'll Use
 var gulp = require('gulp');
+var $ = require('gulp-load-plugins')();
 
 var ext_replace=require('gulp-ext-replace');
-var cached=require('gulp-cached');
-var marked=require('gulp-marked');
-var wrapper=require('gulp-wrapper');
 
 var fs = require('fs');
 var SRC='src';
@@ -36,8 +34,8 @@ gulp.task('doc',function()
   var header=fs.readFileSync(__dirname + '/doc/header.html').toString();
   var footer=fs.readFileSync(__dirname + '/doc/footer.html').toString();
   gulp.src('doc/**/*.md')
-  .pipe(marked())
-  .pipe(wrapper({
+  .pipe($.marked())
+  .pipe($.wrapper({
     header:header,
     footer:footer
   }))
@@ -46,6 +44,12 @@ gulp.task('doc',function()
 });
 
 gulp.task('build',['doc'],function(){
+});
+gulp.task('js',function(){
+  gulp.src('js/main.js')
+  .pipe($.browserify())
+  .pipe($.uglify())
+  .pipe(gulp.dest('js/app.js'));
 });
 
 

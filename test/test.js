@@ -12,3 +12,16 @@ describe("round", function() {
     
   });
 });
+describe("worker",function()
+{
+  var workergen=require("../js/worker.js");
+  var worker;
+  it("basic communication",function(){
+    worker=new workergen();
+  });
+  
+  
+  
+  
+ 
+});
