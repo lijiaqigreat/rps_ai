@@ -2,43 +2,42 @@
 
 // Include Gulp & Tools We'll Use
 var gulp = require('gulp');
-var $ = require('gulp-load-plugins')();
-var del = require('del');
-var runSequence = require('run-sequence');
-var browserSync = require('browser-sync');
-var reload = browserSync.reload;
+
+var ext_replace=require('gulp-ext-replace');
+var cached=require('gulp-cached');
+var marked=require('gulp-marked');
+var wrapper=require('gulp-wrapper');
+
+var fs = require('fs');
 var SRC='src';
 var DIST='dist';
-var jade_json_name='json';
-var ext_replace=require('gulp-ext-replace');
-var fs = require('fs');
 
 gulp.task('clean', function(cb)
 {
-  $.cached.caches={};
+  cached.caches={};
 });
 
-gulp.task('css', function () 
-{
-  src.styles = 'css/**/*.{css,less}';
-  return gulp.src('src/styles/bootstrap.less')
-    .pipe($.plumber())
-    .pipe($.less({sourceMap: !RELEASE, sourceMapBasepath: __dirname}))
-    .on('error', $.util.log)
-    .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))
-    .pipe($.csscomb())
-    .pipe($.if(RELEASE, $.minifyCss()))
-    .pipe(gulp.dest(DEST + '/css'))
-    .pipe($.if(watch, reload({stream: true})));
-});
+//gulp.task('css', function () 
+//{
+//  src.styles = 'css/**/*.{css,less}';
+//  return gulp.src('src/styles/bootstrap.less')
+//    .pipe($.plumber())
+//    .pipe($.less({sourceMap: !RELEASE, sourceMapBasepath: __dirname}))
+//    .on('error', $.util.log)
+//    .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))
+//    .pipe($.csscomb())
+//    .pipe($.if(RELEASE, $.minifyCss()))
+//    .pipe(gulp.dest(DEST + '/css'))
+//    .pipe($.if(watch, reload({stream: true})));
+//});
 
 gulp.task('doc',function()
 {
   var header=fs.readFileSync(__dirname + '/doc/header.html').toString();
   var footer=fs.readFileSync(__dirname + '/doc/footer.html').toString();
   gulp.src('doc/**/*.md')
-  .pipe($.marked())
-  .pipe($.wrapper({
+  .pipe(marked())
+  .pipe(wrapper({
     header:header,
     footer:footer
   }))
