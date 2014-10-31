@@ -5,6 +5,7 @@ var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 
 var ext_replace=require('gulp-ext-replace');
+var jasminePhantomJs = require('gulp-jasmine2-phantomjs');
 
 var fs = require('fs');
 var SRC='src';
@@ -45,11 +46,31 @@ gulp.task('doc',function()
 
 gulp.task('build',['doc'],function(){
 });
-gulp.task('js',function(){
+gulp.task('test', function() {
+  return gulp.src(specFiles).pipe(jasminePhantomJs());
+});
+gulp.task('js',function()
+{
   gulp.src('js/main.js')
   .pipe($.browserify())
-  .pipe($.uglify())
-  .pipe(gulp.dest('js/app.js'));
+  //.pipe($.uglify())
+  .pipe($.rename("app.js"))
+  .pipe(gulp.dest('js'));
+});
+gulp.task('test-js', function()
+{
+  gulp.src('test/test.js')
+  .pipe($.browserify())
+  .pipe($.rename("test.min.js"))
+  .pipe(gulp.dest('test'));
+});
+gulp.task('test', ['test-js'], function(){
+  gulp.watch(['js/**/*.js','test/**/*.js'], ['test-js']);
+});
+
+gulp.task('example', function()
+{
+  return gulp.src('tmp_example/specrunner.html').pipe(jasminePhantomJs());
 });
 
 

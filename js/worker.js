@@ -1,28 +1,42 @@
 /**
  * This provides a generic wrapper for web worker.
- * It allows function call, debug
+ * It allows async function call to the worker,
+ * and allows worker to send back debug information,
+ * return value, error message.
+ *
+ * @see {@link js/workerTemplate} for API of the worker
+ * 
  * @module js/worker
  */
+
+var Tokens=require("./tokens.js");
+var $ = require('jquery-browserify');
+
 window.URL = window.URL || window.webkitURL;
 window.BlobBuilder = window.BlobBuilder || window.WebKitBlobBuilder || window.MozBlobBuilder;
-var header="var exports={};var module={exports:exports,self:self};";
-var footer="(module.self.onmessage=function(e){module.exports[e.data[0]].apply(null,e.data.slice(1));};)";
 
 var onmessageHelper=function (e)
 {
-  if(e.data.debug){
-    console.debug(e.data.debug);
+  if(e.data.log){
+    console.log(e.data.debug);
   }
   if(e.data.rtn){
-    this._onmessage(e.data.rtn);
+    this.tokens[e.data.token].a(e.data.rtn);
+    delete this.tokens[e.data.token];
   }
   if(e.data.error){
-    this._onerror(e.data.error);
+    this.tokens[e.data.token].b(e.data.error);
+    delete this.tokens[e.data.token];
   }
 };
 var onerrorHelper=function (e)
 {
-  this.onerror(e.data);
+  if(e.data.token){
+    this.tokens[e.data.token].b(e.data.error);
+    delete this.tokens[e.data.token];
+  }else{
+    
+  }
 };
 var getWorker=function (str)
 {
@@ -47,43 +61,39 @@ var getWorker=function (str)
 var proto=
 {
   /**
-   * this interrupts the worker and 
-   * @param {string} str js source of the worker. See {@link bots/template} to get api of the bot
+   * source, url, 
+   * this stops the worker and restart a new one
    * @return promise
    */
-  init:function(str)
+  init:function(obj)
   {
     this.stop();
+    if(obj instanceof string){
+    }
     this.worker=getWorker.bind(this)(str);
-    this.promise=Promise.resolve(null);
   },
   stop:function()
   {
     if(this.worker!==null){
-      this.promise=null;
       this.worker.terminate();
       this.worker=null;
     }
   },
   call:function()
   {
-    
+    var args=arguments;
     var self=this;
-    var promise=this.promise;
-    this.promise = promise.then(function(output)
-    {
-      return new Promise(function(a,b){
-        self._onmessage=a;
-        self._onerror=b;
-        self.worker.postMessage(arguments);
-      });
+    return new Promise(function(a,b){
+      var token=self.tokens.store({a:a,b:b});
+      self.worker.postMessage([token].concat(args));
     });
-    return this.promise;
   }
+
 };
 var workergen=function()
 {
   this.worker=null;
+  this.tokens={};
   this.promise=Promise.resolve();
   this._onmessage=null;
   this._onerror=null;
