@@ -15,16 +15,27 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'test-main.js',
+      //'vendor/underscore.js',
+      //'js/object.js',
+      //'test/object.test.js'
+      /*
+      'vendor/jquery.min.js',
+      'vendor/jasmine-2.0.3/jasmine.js',
+      'vendor/jasmine-2.0.3/jasmine-html.js',
+      'vendor/jasmine-2.0.3/boot.js',
+      */
       {pattern: 'js/**/*.js', included: false},
+      {pattern: 'vendor/**/*.js', included: false},
       {pattern: 'bots/**/*.js', included: false},
-      {pattern: 'test/**/*.js', included: false}
+      {pattern: 'test/**/*.js', included: false},
+      'test-main.js',
+      //'test/test.js',
+      //'js/tokens.js'
     ],
 
 
     // list of files to exclude
     exclude: [
-      'tmp*'
     ],
 
 
@@ -64,11 +75,6 @@ module.exports = function(config) {
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false,
-    plugins: [
-      "karma-jasmine",
-      "karma-phantomjs-launcher",
-      "karma-requirejs"
-    ]
+    singleRun: false
   });
 };

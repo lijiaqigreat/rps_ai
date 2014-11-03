@@ -9,8 +9,7 @@
  * @module js/worker
  */
 
-var Tokens=require("./tokens.js");
-var $ = require('jquery-browserify');
+define("Worker",["./tokens.js"],function(Tokens){
 
 window.URL = window.URL || window.webkitURL;
 window.BlobBuilder = window.BlobBuilder || window.WebKitBlobBuilder || window.MozBlobBuilder;
@@ -99,4 +98,5 @@ var workergen=function()
   this._onerror=null;
 };
 workergen.prototype=proto;
-module.exports=workergen;
+return workergen;
+});

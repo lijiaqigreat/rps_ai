@@ -1,24 +1,30 @@
-var allTestFiles = [];
-var TEST_REGEXP = /(spec|test)\.js$/i;
+var tests = [];
+for (var file in window.__karma__.files) {
+    if (/test\.js$/.test(file)) {
+        tests.push(file);
+    }
+}
+console.log(window.__karma__.files);
+console.log(tests);
 
-var pathToModule = function(path) {
-  return path.replace(/^\/base\//, '').replace(/\.js$/, '');
-};
+requirejs.config({
+    // Karma serves files from '/base'
+    baseUrl: '/base',
 
-Object.keys(window.__karma__.files).forEach(function(file) {
-  if (TEST_REGEXP.test(file)) {
-    // Normalize paths to RequireJS module names.
-    allTestFiles.push(pathToModule(file));
-  }
-});
+    paths: {
+        'jquery': 'vendor/jquery',
+        'underscore': 'vendor/underscore',
+    },
 
-require.config({
-  // Karma serves files under /base, which is the basePath from your config file
-  baseUrl: '/base',
+    shim: {
+        'underscore': {
+            exports: '_'
+        }
+    },
 
-  // dynamically load all test files
-  deps: allTestFiles,
+    // ask Require.js to load these files (all our tests)
+    deps: tests,
 
-  // we have to kickoff jasmine, as it is asynchronous
-  callback: window.__karma__.start
+    // start test run, once Require.js is done
+    callback: window.__karma__.start
 });
