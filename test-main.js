@@ -4,8 +4,6 @@ for (var file in window.__karma__.files) {
         tests.push(file);
     }
 }
-console.log(window.__karma__.files);
-console.log(tests);
 
 requirejs.config({
     // Karma serves files from '/base'

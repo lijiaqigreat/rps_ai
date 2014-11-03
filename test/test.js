@@ -1,14 +1,12 @@
-require(["js/tokens","underscore"],function(Tokens,_){
-  console.log("test");
-  describe("A suite is just a function", function()
+define(["js/tokens","js/worker","underscore"],function(Tokens,Worker,_){
+  describe("jasmine syntax", function()
   {
     var a;
-    it("and so is a spec", function()
+    it("toBe", function()
     {
+      console.log("test");
       a = true;
-      expect(a).toBe(false);
       expect(a).toBe(true);
-
     });
   });
   describe("sync tokens", function()
@@ -64,5 +62,8 @@ require(["js/tokens","underscore"],function(Tokens,_){
       });
       expect(count).toBe(this.size);
     });
+  });
+  describe("worker", function()
+  {
   });
 });

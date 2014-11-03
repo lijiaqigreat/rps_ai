@@ -3,9 +3,7 @@
  * generates
  * @module js/tokens
  */
-  console.log("tokens");
-define("tokens",[],function(){
-  console.log("tokens");
+define([],function(){
   var nextKey=0;
   var proto={
     store:function(data){
