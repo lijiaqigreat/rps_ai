@@ -1,5 +1,5 @@
-define(["js/tokens","js/worker","underscore"],function(Tokens,Worker,_){
-  describe("jasmine syntax", function()
+define(["js/tokens","js/worker","jquery","underscore"],function(Tokens,Worker,$,_){
+  describe("basic", function()
   {
     var a;
     it("toBe", function()
@@ -8,6 +8,27 @@ define(["js/tokens","js/worker","underscore"],function(Tokens,Worker,_){
       a = true;
       expect(a).toBe(true);
     });
+    it("async",function(done)
+    {
+      setTimeout(done,10);
+    });
+    it("$.param",function(){
+      expect($.param({a:1,b:"a"})).toBe("a=1&b=a");
+    })
+    it("ajax",function(done)
+    {
+      $.ajax("../test/workerHelper.js",{
+        success:function(text){
+          expect(text[0]).toBe('v');
+          done();
+        },
+        error:function(jqXHR,text,errorThrown){
+          console.log(text);
+          console.log(errorThrown);
+          done();
+        }
+      })
+    })
   });
   describe("sync tokens", function()
   {
@@ -65,5 +86,8 @@ define(["js/tokens","js/worker","underscore"],function(Tokens,Worker,_){
   });
   describe("worker", function()
   {
+    beforeEach(function(done)
+    {
+    });
   });
 });
