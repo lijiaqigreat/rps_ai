@@ -9,30 +9,32 @@
  * @module js/worker
  */
 
-define("Worker",["./tokens.js"],function(Tokens){
+define(["./tokens.js"],function(Tokens){
 
 window.URL = window.URL || window.webkitURL;
 window.BlobBuilder = window.BlobBuilder || window.WebKitBlobBuilder || window.MozBlobBuilder;
 
-var onmessageHelper=function (e)
+var onmessageHelper=function (self,e)
 {
   if(e.data.log){
-    console.log(e.data.debug);
+    console.log(e.data.log);
   }
   if(e.data.rtn){
-    this.tokens[e.data.token].a(e.data.rtn);
-    delete this.tokens[e.data.token];
+    self.tokens[e.data.token].a(e.data.rtn);
+    delete self.tokens[e.data.token];
   }
   if(e.data.error){
-    this.tokens[e.data.token].b(e.data.error);
-    delete this.tokens[e.data.token];
+    self.tokens[e.data.token].b(e.data.error);
+    delete self.tokens[e.data.token];
   }
 };
-var onerrorHelper=function (e)
+var onerrorHelper=function (self,e)
 {
+  //TODO handle
+  console.error(e);
   if(e.data.token){
-    this.tokens[e.data.token].b(e.data.error);
-    delete this.tokens[e.data.token];
+    self.tokens[e.data.token].b(e.data.error);
+    delete self.tokens[e.data.token];
   }else{
     
   }
@@ -52,8 +54,9 @@ var getWorker=function (str)
       blob = blob.getBlob();
   }
   var worker = new Worker(URL.createObjectURL(blob));
-  worker.onmessage=onmessageHelper.bind(this);
-  worker.onerror=onerrorHelper.bind(this);
+  var self=this;
+  worker.onmessage=function(e){return onmessageHelper(self,e);};
+  worker.onerror=function(e){return onerrorHelper(self,e);};
   return worker;
 };
 
@@ -67,13 +70,19 @@ var proto=
   init:function(obj)
   {
     this.stop();
-    if(obj instanceof string){
+    if(obj instanceof String){
     }
-    this.worker=getWorker.bind(this)(str);
+    this.worker=getWorker.call(this,obj);
   },
   stop:function()
   {
     if(this.worker!==null){
+      var self=this;
+      this.tokens.all(function(token){
+        //console.log(self.tokens[token]);
+        self.tokens[token].b("worker stopped");
+      });
+      this.tokens=new Tokens();
       this.worker.terminate();
       this.worker=null;
     }
@@ -82,9 +91,14 @@ var proto=
   {
     var args=arguments;
     var self=this;
+    var list=Array(args.length+1);
+    for(var t=0;t<args.length;t++){
+      list[t+1]=args[t];
+    }
     return new Promise(function(a,b){
       var token=self.tokens.store({a:a,b:b});
-      self.worker.postMessage([token].concat(args));
+      list[0]=token;
+      self.worker.postMessage(list);
     });
   }
 
@@ -92,7 +106,7 @@ var proto=
 var workergen=function()
 {
   this.worker=null;
-  this.tokens={};
+  this.tokens=new Tokens();
   this.promise=Promise.resolve();
   this._onmessage=null;
   this._onerror=null;

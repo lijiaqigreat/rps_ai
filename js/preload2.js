@@ -151,7 +151,8 @@ var rps=$.extend((rps||{}),function(){
     {
       //TODO
     },
-    end_game:function(){
+    end_game:function()
+    {
       this.ready_not();
       //post game
       if(history.turn.length!==0){
@@ -159,7 +160,8 @@ var rps=$.extend((rps||{}),function(){
       }
       this.worker.stop();
     },
-    start_game:function(){
+    start_game:function()
+    {
       var self=this;
       this.worker.init(this.data.botstr);
       return this.worker.call(//init bot

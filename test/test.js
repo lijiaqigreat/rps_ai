@@ -1,36 +1,25 @@
-define(["js/tokens","js/worker","jquery","underscore"],function(Tokens,Worker,$,_){
+define(["../js/tokens.js","../js/worker.js","jquery","underscore","Promise","./workerHelper.js"],function(Tokens,worker,$,_,Promise,workerHelper){
+  //console.log("config");
   describe("basic", function()
   {
+    //console.log("config2");
     var a;
     it("toBe", function()
     {
-      console.log("test");
+      //console.log("test");
       a = true;
       expect(a).toBe(true);
     });
     it("async",function(done)
     {
+      expect(true).toBe(true);
       setTimeout(done,10);
     });
     it("$.param",function(){
       expect($.param({a:1,b:"a"})).toBe("a=1&b=a");
-    })
-    it("ajax",function(done)
-    {
-      $.ajax("../test/workerHelper.js",{
-        success:function(text){
-          expect(text[0]).toBe('v');
-          done();
-        },
-        error:function(jqXHR,text,errorThrown){
-          console.log(text);
-          console.log(errorThrown);
-          done();
-        }
-      })
-    })
+    });
   });
-  describe("sync tokens", function()
+  describe("tokens", function()
   {
     beforeEach(function()
     {
@@ -86,8 +75,42 @@ define(["js/tokens","js/worker","jquery","underscore"],function(Tokens,Worker,$,
   });
   describe("worker", function()
   {
-    beforeEach(function(done)
+    beforeEach(function()
     {
+      var self=this;
+      self.worker=new worker();
+      self.worker.init(workerHelper);
+      //self.worker.call("a","b");
+      //console.log(self.worker);
+      //console.log(self.worker.worker.onmessage);
+    });
+    it("can log",function(done)
+    {
+      var tmp=this.worker.call("delay",10,"for jasmine").then(function(message)
+      {
+        expect(message.indexOf("for jasmine")).not.toBe(-1);
+        done();
+      });
+    });
+    it("can return",function(done)
+    {
+      var tmp=this.worker.call("add",5,-1.5).then(function(message)
+      {
+        expect(message).toBe(3.5);
+        done();
+      });
+    });
+    it("can stop",function(done)
+    {
+      var tmp=this.worker.call("delay",10,"for jasmine").then(function(message)
+      {
+        expect(message).toBeUndefined();
+        done();
+      },function(error){
+        expect(error).not.toBeUndefined();
+        done();
+      });
+      this.worker.stop();
     });
   });
 });
