@@ -1,13 +1,14 @@
 /**
  * A template of RPS Robot.
  * All nessesary api are provided.
- * It will be loaded by 
+ * It will be loaded by Web Worker
  * @module bots/template
  */
 
-var running=false;
 var bot={
   /**
+   * make next move
+   * 
    * @return {Hand} next hand
    */
   getHand:function(){
@@ -18,29 +19,42 @@ var bot={
   },
   /**
    * notify the bot the last turn
+   * only will be called after initialized
    * @param {Hand} h0 bot's hand
    * @param {Hand} h1 opponent's hand
    * @param {Number} dt milliseconds since last turn
-   * @return {Promise} null
+   * @return {none} undefined
    */
   update:function(h0,h1,dt)
   {
-    if(!running){
-      throw "not initialied yet";
-    }
     return;
   },
   /**
+   * method for retrieving dataParam
+   * @static
    * @param {Object} param the parameter for bot (independent of method used)
-   * @return {Object} data param
+   * @return {Object} data param TODO link api
    */
   getDataParam:function(param){
     return {};
   },
+  /**
+   * initialize bot
+   * @param {Object} param the parameter for bot (independent of method used)
+   * @param {Object} data used to initialize state of bot
+   * @return {none} undefined
+   */
   init:function(param,data){
-    running=true;
     return;
   },
+  /**
+   * a static method used for training bot offline
+   * @static
+   * @param {Object} param the parameter for bot (independent of method used)
+   * @param {Object} data the old used to initialize state of bot
+   * @param {Array} games games used for bot to train TODO reference game api
+   * @return {Object} new state of bot after training
+   */
   train:function(param,data,games){
     return data;
   },

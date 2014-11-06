@@ -21,6 +21,11 @@ requirejs.config({
 
     // start test run, once Require.js is done
 });
-require(["test/test.js"],function(){
+var tests=[
+  "test/basic.test.js",
+  "test/worker.test.js",
+  "test/tokens.test.js"
+];
+require(tests,function(){
   jasmine.getEnv().execute();
 });
