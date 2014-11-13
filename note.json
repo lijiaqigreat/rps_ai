@@ -57,10 +57,8 @@
     },
     "note1":
     [
-      "server saves data",
-      "client retrieves data and not-yet-used-game, update data, upload data",
-      "client retrieves data, plays game, upload game",
-      "server keeps newest data, backup older data"
+      "client has two roles: human_player, root",
+      "human player uploads game"
     ],
     "pro":
     {
@@ -128,13 +126,55 @@
     },
     "js":
     {
-      "player":
+      "player type":
       {
+        "note":
+        [
+          "it is an identity that plays games",
+          "it's identity is represented by param",
+          "identity is some constant parameter",
+          "state is retrieved online, possibly from the internet",
+          "player has a lot of controls",
+          "type of player defines its conputation model"
+        ],
+        "players":
+        {
+          "bot":
+          {
+            "note":
+            [
+              "datastore"
+            ]
+          }
+        },
+        "presumption":
+        [
+          "its decision is based on its identity, opponent_id, state",
+          "it should not cheat"
+        ],
         "function":
         {
           "getHand":"() > (hand)",
           "update":"(h0,h1,dt) > ()",
           "init":"(param) > ()"
+        },
+        "types":
+        {
+          "online bot":
+          [
+            "param",
+            "data",
+            "new games",
+            "opponent"
+          ],
+          "offline bot":
+          [
+            "param",
+            "data",
+            "games"
+          ],
+          "stateless bot":"",
+          "human":""
         }
       }
     },
@@ -331,7 +371,25 @@
   "assumptions":
   {
     "no CS specialist plays the game":"",
-    "user cannot create custom parameter robot":"maybe"
+    "user cannot create custom parameter robot":"maybe",
+    "server only accepts human games":"only human behavior is valuable"
+  },
+  "requirement":
+  {
+    "bot":
+    {
+      "custom bot can be offline, online, stateless":"",
+      "custom bot cannot cheat":"",
+      "human vs. bot easily":"",
+      "bot vs. bot":""
+    }
+  },
+  "use case":
+  {
+    "human vs. bot":"",
+    "automated bot vs. bot":"",
+    "programmer debug new bot":"",
+    "train bot":""
   },
   "tmp":
   {

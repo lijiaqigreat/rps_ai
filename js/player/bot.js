@@ -8,12 +8,12 @@ function(Worker,Tokens,Promise,$,md5){
   /**
    * @param {String} param.boturi uri of the bot source 
    * @param {Object} param.botparam custom param for the bot
-   * @param {Boolean} param.updateData true if the bot trains the data and send new data to server
-   * @param {Boolean} param.datastoreurl url of the datastore used to get and post data
+   * @param {String} param.datastoreurl url of the datastore used to get data
+   * if it ends with '?' or '&' the player will append the attribute
+   * with key being "hash" and value being the md5 of the string form of param
    */
-  return function(element,side,param,opponentid)
+  return function(element,side,param)
   {
-    var id=md5(JSON.stringify(param));
     var worker=new Worker();
     return Promise.resolve($.ajax(//load bot
     {
@@ -26,47 +26,25 @@ function(Worker,Tokens,Promise,$,md5){
     })
     .then(function()
     {
-      if(!param.updateData){
-        return {};
-      }else{
-        return worker.call("getDataParam",param.botparam)
-        .then(function(dataparam)//load
-        {
-          return Promise.resolve($.ajax(
-          {
-            url:param.datastoreurl,
-            data:
-            {
-              id1:id,
-              id2:opponentid,
-              bot:param.boturi,
-              param:param.botparam,
-              //TODO human
-            },
-            dataType:"json"
-          }));
-        })
-        .then(function(data)//process data
-        {
-          if(self.param.updateData){
-            var date=data.games[data.games-1].date;
-            worker.call("train",botparam,data.data,data.games)
-            .then(function(data){
-              return Promise.resolve($.post(param.datastoreurl,{
-                bot:param.boturi,
-                param:param.botparam,
-                date:date,
-                data:data
-              }));
-            });
-          }
-          return data.data;
-        });
+      var hash=md5(JSON.stringify(param));//TODO build md5 convert webpage
+      var uri=param.datastoreurl;
+      var end=url[url.length-1];
+      if(end==='?'||end==='&'){
+        url+="hash="+hash;
       }
+      return Promise.resolve($.ajax(
+      {
+        url:uri,
+        dataType:"json"
+      }))
+      .catch(function(error){
+        //TODO report error
+        return {};
+      });
     })
     .then(function(data)//init bot
     {
-      return worker.call("init",param.botparam,data.data);
+      return worker.call("init",param.botparam,data);
     })
     .then(function(){//return
       return {
@@ -80,7 +58,7 @@ function(Worker,Tokens,Promise,$,md5){
         },
         stop:function()
         {
-
+          //TODO
         }
       };
     });
