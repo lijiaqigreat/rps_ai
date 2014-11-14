@@ -17,9 +17,11 @@ module.exports = function(config) {
       {pattern: 'js/**/*.js', included: false},
       {pattern: 'vendor/**', included: false},
       {pattern: 'test/**/*.js', included: false},
-      //{pattern: 'test/**/*.js', included: false},
+      {pattern: 'require-html.js', included: false},
 
       'test.html',
+      'tmp.html',
+      
       'test-main.js'
     ],
 

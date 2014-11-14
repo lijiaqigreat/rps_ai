@@ -23,17 +23,18 @@ function(){
    * @param {function} finish callback at the end of the process
    * @return {Promise} either normal return or -1 (when time exceeds)
    */
-  function getHandWrapper(promise,rt,period,finish){
+  function getHandWrapper(promise,period,finish){
     if(period<=0){
       return promise;
     }
     return new Promise(function(a,b){//timeout
       promise.then(a);
-      Window.setTimeout(b("timeout"),period);
-    }).catch(function(){
+      window.setTimeout(function(){b("time out");},period);
+    }).catch(function(error){
       return -1;
     })
     .then(function(rtn){//update finish
+      console.log("r"+rtn);
       finish();
       return rtn;
     });
@@ -42,21 +43,6 @@ function(){
    * helper function to be used in beginning and routine rounds.
    * @see return function for meanings of the parameters
    */
-  function update(p1,p2,finish1,finish2,period,h0,h1,dt,game){
-    start();
-    return new Promise(function(a,b){
-      game.terminate=b;
-      Promise.all([
-        getHandWrapper(p1.getHand(h0,h1,dt),period,finish1),
-        getHandWrapper(p2.getHand(h1,h0,dt),period,finish2)
-      ])
-      .then(function(hs){
-        if(hs[0]===-1&&hs[1]===-1){
-          throw "no one finish";
-        }
-      }).then(a,b);
-    });
-  }
   /**
    * @param {Promise} g1 first player
    * @param {Promise} g2 second player
@@ -76,14 +62,38 @@ function(){
     };
     var p1,p2;
     var promise;
-    var quit=function(){
+    var quit=function(message){
+      console.log("quit");
+      console.log(message.message);
       p1.stop();
       p2.stop();
       end();
       throw "";
     };
     //REALLY COMPLICATED
+    var update=function (h0,h1,dt)
+    {
+      if(n--<=0){
+        throw "no more turns";
+      }
+
+      start();
+      return new Promise(function(a,b){
+        f.terminate=b;
+        Promise.all([
+          getHandWrapper(p1.getHand(h0,h1,dt),period,finish1),
+          getHandWrapper(p2.getHand(h1,h0,dt),period,finish2)
+        ])
+        .then(function(hs){
+          if(hs[0]===-1&&hs[1]===-1){
+            throw "no one finish";
+          }
+          return hs;
+        }).then(a,b);
+      });
+    };
     var recur=function(hs){
+      console.log("!");
       promise=promise.then(function(){
         f.history.append(hs[0]+hs[1]*4);
         var tmp=f.time;
@@ -99,7 +109,7 @@ function(){
       f.terminate=b;
       Promise.all([g1,g2]).then(a);
     });
-    promise.catch(function(error){
+    promise.then(function(ps){return ps;},function(error){
       f.state="quit";
       //do nothing to quit initialization of player
     });
@@ -108,12 +118,15 @@ function(){
       p1=ps[0];
       p2=ps[1];
       f.time=Date.now();
-      return update(p1,p2,finish1,finish2,period,-1,-1,0,f);
+      return update(-1,-1,0);
     });
+
+    /*
     promise.then(recur,quit)
     .catch(function(){
       f.state="quit";
     });
+    */
     return f;
   };
 });
