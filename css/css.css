@@ -1,61 +1,72 @@
-.hum-bot{
-  padding:0px;
-  margin:0px;
-}
 .wasteland{
   position: absolute;
   top: -100000px;
 }
-button.gh{
-  padding-top:20%;
-  background-color:#ff0000;
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
+.flexp{
+  display:flex;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flexbox;
 }
-#gh_0{
-  background-image:url("../asset/rps_r0.jpg");
+.flexc{
+  flex:1;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  width:1%;
 }
-#gh_1{
-  background-image:url("../asset/rps_p0.jpg");
-}
-#gh_2{
-  background-image:url("../asset/rps_s0.jpg");
-}
-.gr{
-  padding-top: 30%;
-  background-color:#00ff00;
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-}
-
 .roundR{
-  padding:0px;
-  border:1px solid #ff0000;
-  background-size: 100% 100%;
+  border-radius:8px;
+  margin-bottom:3%;
+  overflow:hidden;
+  background-color:white;
 }
 .roundRc{
-  padding-top:20%;
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
+  text-align:center;
+  font-size:80%;
+
+}
+#g_stat > div{
+  padding-left:5px;
+  padding-right:5px;
+}
+img{
+  width:100%;
+}
+@media screen and (max-width: 2000px) {
+  #main{
+    font-size:24px;
+  }
+}
+@media screen and (max-width: 800px) {
+  #main{
+    font-size:18px;
+  }
+}
+@media screen and (max-width: 500px) {
+  #main{
+    font-size:12px;
+  }
+}
+.boxh{
+  font-weight: bold;
+  margin:0px;
+}
+.box{
+  border-radius:8px;
+  padding:6px;
 }
 
-/*
-#gr_0.h_0{
-  background-image:url("asset/rps_r0.jpg");
+#g_score tbody tr td,#g_score thead tr td{
+  text-align:center;
 }
-#gr_0.h_1{
-  background-image:url("asset/rps_p0.jpg");
+#g_score{
+  margin-bottom:0px;
+  width:100%;
 }
-#gr_0.h_2{
-  background-image:url("asset/rps_s0.jpg");
+#g_hist{
+  overflow:auto;
+  height:200px;
 }
-#gr_1.h_0{
-  background-image:url("asset/rps_r1.jpg");
-}
-#gr_1.h_1{
-  background-image:url("asset/rps_p1.jpg");
-}
-#gr_1.h_2{
-  background-image:url("asset/rps_s1.jpg");
-}
-*/

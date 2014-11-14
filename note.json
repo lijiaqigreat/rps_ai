@@ -7,17 +7,12 @@
     "important":
     {
       "doc":"jsdoc",
-      "module":"browserify",
-      "worker":"generic module",
-      "test":"jasmine + phantomjs",
-      "bot":"api"
+      "api":"consistent"
     },
     "bot api":
     [
-      "always use worker",
       "handle error",
       "handle not ready",
-      "enforce time? no",
       "able to debug",
       "able to be transparent"
     ]
