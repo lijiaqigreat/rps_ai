@@ -8,11 +8,11 @@ function(Worker,Tokens,Promise,$,md5){
   /**
    * @param {String} param.boturi uri of the bot source 
    * @param {Object} param.botparam custom param for the bot
-   * @param {String} param.datastoreurl url of the datastore used to get data
+   * @param {String} param.dataurl url of the data used to get data
    * if it ends with '?' or '&' the player will append the attribute
    * with key being "hash" and value being the md5 of the string form of param
    */
-  return function(element,side,param)
+  return function(param)
   {
     var worker=new Worker();
     return Promise.resolve($.ajax(//load bot
@@ -26,11 +26,11 @@ function(Worker,Tokens,Promise,$,md5){
     })
     .then(function()
     {
-      var hash=md5(JSON.stringify(param));//TODO build md5 convert webpage
-      var uri=param.datastoreurl;
-      var end=url[url.length-1];
+      var uri=param.dataurl;
+      var end=uri[uri.length-1];
       if(end==='?'||end==='&'){
-        url+="hash="+hash;
+        var hash=md5(JSON.stringify(param));//TODO build md5 convert webpage
+        uri+="hash="+hash;
       }
       return Promise.resolve($.ajax(
       {
@@ -48,13 +48,11 @@ function(Worker,Tokens,Promise,$,md5){
     })
     .then(function(){//return
       return {
-        getHand:function()
+        getHand:function(h0,h1,dt)
         {
-          return worker.call("getHand");
-        },
-        update:function(h0,h1,dt)
-        {
-          return worker.call("update",h0,h1,dt);
+          return worker.call("update",h0,h1,dt).then(function(){
+            return worker.call("getHand");
+          });
         },
         stop:function()
         {

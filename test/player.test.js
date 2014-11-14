@@ -1,15 +1,9 @@
-define(["jquery","../js/game.js","../js/player/template.js","../js/player/human.js"],
-function($,Game,template,Human){
-  ddescribe("player:human",function()
+define(["jquery","../js/game.js","../js/player/template.js","../js/player/human.js","../js/player/bot.js"],
+function($,Game,template,Human,Bot){
+  describe("player:human",function()
   {
-    beforeEach(function(){
-      this.N=20;
-      this.hand1=Array(this.N);
-      this.hand2=Array(this.N);
-      for(var i=0;i<this.N;i++){
-      }
-    });
-    it("basic",function(done){
+    it("basic",function(done)
+    {
       var p1={doms:Array(3)};
       var p2={doms:Array(3)};
       for(var i=0;i<3;i++){
@@ -27,13 +21,16 @@ function($,Game,template,Human){
         hand.push(h);
         doms[h].onclick();
       };
-      var start=function(){
+      var start=function()
+      {
         window.setTimeout(function(){
           click(hand1,p1.doms);
           click(hand2,p2.doms);
         },delay);
       };
-      var end=function(message){
+      var end=function(message)
+      {
+        expect(message).toBe("no more turns");
         var hand12=hand1.map(function(h1,i){
           return h1+hand2[i]*4;
         });
@@ -42,6 +39,27 @@ function($,Game,template,Human){
         done();
       };
       var game=Game(h1,h2,100,start,nth,nth,end,10);
+    });
+  });
+  describe("player:bot",function(){
+    it("basic",function(done)
+    {
+      var b1=Bot({boturi:"/base/js/bots/template.js",botparam:"{}",dataurl:" "});
+      var b2=Bot({boturi:"/base/js/bots/template.js",botparam:"{}",dataurl:" "});
+      var nth=function(){};
+      var n=20;
+      var start=function(){
+      };
+      var end=function(message)
+      {
+        console.log(game.history);
+        console.log(game.history2);
+        expect(message).toBe("no more turns");
+        expect(game.history.length).toBe(n);
+        done();
+      };
+      var game=Game(b1,b2,500,start,nth,nth,end,n);
+
     });
   });
 });

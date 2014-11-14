@@ -19,7 +19,7 @@ var onmessageHelper=function (self,e)
   if(e.data.log){
     console.log(e.data.log);
   }
-  if(e.data.rtn){
+  if(e.data.hasOwnProperty("rtn")){
     self.tokens[e.data.token].a(e.data.rtn);
     delete self.tokens[e.data.token];
   }

@@ -22,11 +22,21 @@ function(Worker,workerHelper)
     });
     it("can return",function(done)
     {
+      var worker=this.worker;
+      var genUnit=function(value){
+        return worker.call("unit",value)
+        .then(function(message){
+          expect(message).toBe(value);
+        });
+      };
       var tmp=this.worker.call("add",5,-1.5).then(function(message)
       {
         expect(message).toBe(3.5);
-        done();
-      });
+      }).then(function(){
+        return genUnit(0);
+      }).then(function(){
+        return genUnit(undefined); 
+      }).then(done);
     });
     it("can stop",function(done)
     {

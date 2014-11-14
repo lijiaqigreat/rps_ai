@@ -7,7 +7,8 @@ function(Game,template){describe("game",function()
     var nth=function(){};
     var n=10;
     var game;
-    var end=function(){
+    var end=function(message){
+      expect(message).toBe("no more turns");
       console.log(game.history);
       console.log(game.history2);
       expect(game.history.length).toBe(n);
@@ -28,7 +29,8 @@ function(Game,template){describe("game",function()
     var p2=template(100);
     var nth=function(){};
     var game;
-    var end=function(){
+    var end=function(message){
+      expect(message).toBe("no one finish");
       expect(game.history.length).toBe(0);
       done();
     };

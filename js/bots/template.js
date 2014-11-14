@@ -12,9 +12,6 @@ var bot={
    * @return {Hand} next hand
    */
   getHand:function(){
-    if(!running){
-      throw "not initialied yet";
-    }
     return (Math.random()*3)|0;
   },
   /**
@@ -67,8 +64,9 @@ var bot={
  */
 self.onmessage=function(e){
   var token=e.data[0];
-  var name=e.data[0];
+  var name=e.data[1];
   var args=e.data.slice(2);
   var rtn=bot[name].apply(bot,args);
+  if(rtn===undefined){rtn="undefined";}
   self.postMessage({token:token,rtn:rtn});
 };

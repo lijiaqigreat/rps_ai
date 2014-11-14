@@ -83,7 +83,7 @@ function(){
     var recur=function(hs)
     {
       promise=promise.then(function(){
-        f.history.push(hs[0]+hs[1]*4);
+        f.history.push((hs[0]&3)+(hs[1]&3)*4);
         var tmp=f.time;
         f.time=Date.now();
         tmp=f.time-tmp;
