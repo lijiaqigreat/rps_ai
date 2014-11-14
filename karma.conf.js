@@ -6,6 +6,9 @@ module.exports = function(config) {
 
     // base path, that will be used to resolve files and exclude
     basePath: '',
+    preprocessors:{
+      "less/**/*.less":["less"]
+    },
 
 
     // frameworks to use
@@ -21,11 +24,16 @@ module.exports = function(config) {
       {pattern: 'test/**/*.js', included: false},
       {pattern: 'require-html.js', included: false},
       {pattern: '*.html', included: false},
-
-      'tmp.html',
       
       'test-main.js'
     ],
+    lessPreprocessor:{
+      paths:["less"],
+      save:true,
+      transformPath:function(path){
+        return path.replace(/less\//,"css").replace(/\.less/,".css");
+      }
+    },
 
 
     // list of files to exclude
