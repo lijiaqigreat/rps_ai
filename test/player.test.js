@@ -34,7 +34,6 @@ function($,Game,template,Human,Bot){
         var hand12=hand1.map(function(h1,i){
           return h1+hand2[i]*4;
         });
-        console.log(hand12);
         expect(hand12).toEqual(game.history);
         done();
       };
@@ -52,13 +51,11 @@ function($,Game,template,Human,Bot){
       };
       var end=function(message)
       {
-        console.log(game.history);
-        console.log(game.history2);
         expect(message).toBe("no more turns");
         expect(game.history.length).toBe(n);
         done();
       };
-      var game=Game(b1,b2,500,start,nth,nth,end,n);
+      var game=Game(b1,b2,100,start,nth,nth,end,n);
 
     });
   });

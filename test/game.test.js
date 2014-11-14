@@ -9,8 +9,6 @@ function(Game,template){describe("game",function()
     var game;
     var end=function(message){
       expect(message).toBe("no more turns");
-      console.log(game.history);
-      console.log(game.history2);
       expect(game.history.length).toBe(n);
       expect(game.state).toBe("stopped");
       Promise.all([
