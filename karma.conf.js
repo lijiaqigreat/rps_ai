@@ -18,8 +18,8 @@ module.exports = function(config) {
       {pattern: 'vendor/**', included: false},
       {pattern: 'test/**/*.js', included: false},
       {pattern: 'require-html.js', included: false},
+      {pattern: 'test.html', included: false},
 
-      'test.html',
       'tmp.html',
       
       'test-main.js'
@@ -61,7 +61,7 @@ module.exports = function(config) {
     // - Safari (only Mac)
     // - PhantomJS
     // - IE (only Windows)
-    browsers: ['PhantomJS'],
+    //browsers: ['PhantomJS'],
 
 
     // If browser does not capture in given timeout [ms], kill it

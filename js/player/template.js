@@ -15,7 +15,8 @@ function(Worker,Tokens,Promise,$){
    * The following this recommended arguments for player constructor.
    * @return {Promise} the player
    */
-  return function(){
+  return function(time){
+    time|=0;
     return Promise.resolve(
     {
       /**
@@ -23,7 +24,9 @@ function(Worker,Tokens,Promise,$){
        */
       getHand: function()
       {
-        return Promise.resolve((Math.random()*3)|0);
+        return new Promise(function(a,b){
+          window.setTimeout(function(){a((Math.random()*3)|0);},time);
+        });
       },
       /**
        * notify the bot the last turn
@@ -41,6 +44,7 @@ function(Worker,Tokens,Promise,$){
        */
       stop: function()
       {
+        this.stopped=true;
         return Promise.resolve();
       }
     });

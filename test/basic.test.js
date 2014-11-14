@@ -28,8 +28,8 @@ define(["jquery","underscore"],function($,_){
         expect(data).toBe("y");
         done();
       },function(error){
-        //console.log(error.message);
-        //expect("").toBe("y");
+        console.log(error.message);
+        expect("").toBe("y");
         done();
       });
 
