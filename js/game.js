@@ -34,7 +34,7 @@ function(){
    * @param {function} end TODO explain
    * @return {object} representation of game state
    */
-  return function(g1,g2,period,initial,start,finish1,finish2,end,n)
+  return function(g1,g2,period,start,finish1,finish2,end,n)
   {
     var f={
       history:[],
@@ -47,6 +47,9 @@ function(){
     var promise;
     var quit=function(message)
     {
+      if(f.state==="stopped"){
+        return;
+      }
       if(f.state==="running"){
         p1.stop();
         p2.stop();
@@ -89,7 +92,6 @@ function(){
         .then(recur,quit);
       });
     };
-    initial();
     promise=new Promise(function(a,b){//stop loading
       f.terminate=b;
       Promise.all([g1,g2]).then(a,b);

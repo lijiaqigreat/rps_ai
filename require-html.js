@@ -24,7 +24,9 @@ requirejs.config({
 var tests=[
   "test/basic.test.js",
   "test/worker.test.js",
-  "test/tokens.test.js"
+  "test/tokens.test.js",
+  "test/game.test.js",
+  "test/player.test.js"
 ];
 require(tests,function(){
   jasmine.getEnv().execute();

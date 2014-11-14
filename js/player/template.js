@@ -20,6 +20,12 @@ function(Worker,Tokens,Promise,$){
     return Promise.resolve(
     {
       /**
+       * notify the player the last turn
+       * and return new hand within game's time constraint
+       * (usually infinite long)
+       * @param {Hand} h0 bot's hand
+       * @param {Hand} h1 opponent's hand
+       * @param {Number} dt milliseconds since last turn
        * @return {Promise} next hand
        */
       getHand: function()
@@ -29,18 +35,7 @@ function(Worker,Tokens,Promise,$){
         });
       },
       /**
-       * notify the bot the last turn
-       * @param {Hand} h0 bot's hand
-       * @param {Hand} h1 opponent's hand
-       * @param {Number} dt milliseconds since last turn
-       * @return {Promise} undefined
-       */
-      update: function(h0,h1,dt)
-      {
-        return Promise.resolve();
-      },
-      /**
-       * @return {Promise} undefined
+       * @return {Promise} undefined when finished
        */
       stop: function()
       {

@@ -21,7 +21,7 @@ function(Game,template){describe("game",function()
       })])
       .then(done);
     };
-    game=Game(p1,p2,0,nth,nth,nth,nth,end,n);
+    game=Game(p1,p2,0,nth,nth,nth,end,n);
   });
   it("stop when slow",function(done){
     var p1=template(100);
@@ -32,7 +32,7 @@ function(Game,template){describe("game",function()
       expect(game.history.length).toBe(0);
       done();
     };
-    game=Game(p1,p2,1,nth,nth,nth,nth,end,10);
+    game=Game(p1,p2,1,nth,nth,nth,end,10);
   });
   it("stop when asked",function(done){
     var p1=template(100);
@@ -43,7 +43,7 @@ function(Game,template){describe("game",function()
       expect(game.history.length).toBe(0);
       done();
     };
-    game=Game(p1,p2,50,nth,nth,nth,nth,end,10);
+    game=Game(p1,p2,50,nth,nth,nth,end,10);
     game.terminate();
   });
 });});
