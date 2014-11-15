@@ -11,7 +11,7 @@ var ext_replace=require('gulp-ext-replace');
 
 
 */
-gulp.task('test', function (done) {
+gulp.task('karma', function (done) {
   karma.start({
     configFile: __dirname + '/karma.conf.js'
   }, done);
@@ -58,12 +58,6 @@ gulp.task('test-js', function()
   .pipe($.rename("test.min.js"))
   .pipe(gulp.dest('test'));
 });
-
-gulp.task('example', function()
-{
-  return gulp.src('tmp_example/specrunner.html').pipe(jasminePhantomJs());
-});
-
 
 // Watch Files For Changes & Reload
 // Build and serve the output from the dist build
