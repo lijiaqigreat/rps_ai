@@ -1,13 +1,13 @@
 define(['./worker.js','./tokens.js','Promise','jquery'],
 function(){
   /**
-   * time a promise and return -1 if time exceed.
+   * time a promise and return 3 if time exceed.
    * Designed to wrap player.getHand
    * @param {Promise} promise to be timed starting from the call
    * @param {Long} period max time in millisecond to spend for the promise,
    * 0 means no time limit.
    * @param {function} finish callback at the end of the process
-   * @return {Promise} either normal return or -1 (when time exceeds)
+   * @return {Promise} either normal return or 3 (when time exceeds)
    */
   function getHandWrapper(promise,period,finish)
   {
@@ -18,7 +18,7 @@ function(){
       promise.then(a);
       window.setTimeout(function(){b("time out");},period);
     }).catch(function(error){
-      return -1;
+      return 3;
     })
     .then(function(rtn){//update finish
       finish();
@@ -71,7 +71,7 @@ function(){
           getHandWrapper(p2.getHand(h1,h0,dt),period,finish2)
         ])
         .then(function(hs){
-          if(hs[0]===-1&&hs[1]===-1){
+          if(hs[0]===3&&hs[1]===3){
             throw "no one finish";
           }
           return hs;
@@ -102,7 +102,7 @@ function(){
       p2=ps[1];
       f.time=Date.now();
       f.state="running";
-      return update(-1,-1,0);
+      return update(3,3,0);
     });
 
     promise.then(recur,quit)

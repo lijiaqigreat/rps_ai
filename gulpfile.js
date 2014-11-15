@@ -5,12 +5,10 @@ var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 var karma= require('karma').server;
 var fs = require('fs');
+var browserSync=require('browser-sync');
+var reload=browserSync.reload;
 
 var ext_replace=require('gulp-ext-replace');
-/*
-
-
-*/
 gulp.task('karma', function (done) {
   karma.start({
     configFile: __dirname + '/karma.conf.js'
@@ -26,7 +24,7 @@ gulp.task('less', function () {
   gulp.src('./less/main.less')
   .pipe($.less({
   }))
-  .pipe(gulp.dest(__dirname+'/css/main.compile.css'));
+  .pipe(gulp.dest(__dirname+'/css'));
 });
 
 gulp.task('doc',function()
@@ -45,6 +43,7 @@ gulp.task('doc',function()
 
 gulp.task('build',['doc'],function(){
 });
+//TODO
 gulp.task('js',function()
 {
   gulp.src('js/main.js')
@@ -52,13 +51,6 @@ gulp.task('js',function()
   .pipe($.rename("app.js"))
   .pipe(gulp.dest('js'));
 });
-gulp.task('test-js', function()
-{
-  gulp.src('test/test.js')
-  .pipe($.rename("test.min.js"))
-  .pipe(gulp.dest('test'));
-});
-
 // Watch Files For Changes & Reload
 // Build and serve the output from the dist build
 gulp.task('serve', ['build'], function () {

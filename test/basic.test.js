@@ -37,10 +37,10 @@ define(["jquery","underscore","../js/text_to_url.js"],function($,_,t2u){
 
     });
     it("karma-html",function(){
-      var html=window.__html__["test/helper.html"];
+      //var html=window.__html__["test/helper.html"];
       //console.log(html);
 
-      $("body").append($(html)[0]);
+      //$("body").append($(html)[0]);
       //console.log($("#test_helper").text());
       expect(0).toBe(0);
     });

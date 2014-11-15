@@ -3,7 +3,7 @@
 
 var rpsd={};
 var rps=$.extend((rps||{}),function(){
-  var consts=//constant data
+    var consts=//constant data
   {
     randomInt:function(n)
     {

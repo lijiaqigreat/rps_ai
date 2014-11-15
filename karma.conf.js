@@ -6,9 +6,6 @@ module.exports = function(config) {
 
     // base path, that will be used to resolve files and exclude
     basePath: '',
-    preprocessors:{
-      "**/*.html":["html2js"]
-    },
 
 
     // frameworks to use
@@ -23,7 +20,7 @@ module.exports = function(config) {
       {pattern: 'vendor/**', included: false},
       {pattern: 'test/**/*.js', included: false},
       {pattern: 'require-html.js', included: false},
-      {pattern: '*.html', included: true},
+      {pattern: '*.html', included: false},
       {pattern: 'test/*.html', included: true},
       'test-main.js'
     ],
