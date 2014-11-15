@@ -1,0 +1,103 @@
+
+@gap-size:@grid-gutter-width;
+
+.box
+{
+  .border-radius(@gap-size);
+  padding:@gap-size*0.6;
+  background-color:@gray-lighter;
+  margin:0px;
+}
+
+@import "helper.less";
+
+
+.wasteland
+{
+  position: absolute;
+  top: -100000px;
+}
+.roundR
+{
+  border-radius:5%;
+  margin-bottom:2%;
+  overflow:hidden;
+  background-color:white;
+  .flexp;
+  .roundRc{
+    .flexc;
+    text-align:center;
+    font-size:80%;
+    img{
+      width:100%;
+    }
+  }
+}
+
+#g_result
+{
+  .panel-body{
+    .flexp;
+    justify-content:center;
+  }
+  img.gr
+  {
+    width:10em;
+    max-width:100%;
+    border:4px solid @brand-primary;
+  }
+
+}
+#g_hand{
+  .gh{
+    border: solid @brand-success 0.5em;
+  }
+  svg{
+    width:100%;
+    height:2em;
+  }
+  > div > .btn{
+    width:100%;
+    margin-bottom:@line-height-computed;
+  }
+}
+#g_stat{
+  #gis_table{
+    width:100%;
+    margin-bottom:0px;
+    td{
+      text-align:center;
+    }
+  }
+}
+#g_hist{
+  #gh_scroll{
+    overflow-y:auto;
+    height:12em;
+  }
+}
+
+@media screen and (max-width: 2000px) {
+  #main{
+    font-size:24px;
+  }
+}
+@media screen and (max-width: 800px) {
+  #main{
+    font-size:18px;
+  }
+}
+@media screen and (max-width: 500px) {
+  #main{
+    font-size:12px;
+  }
+}
+.svg_rps{
+  fill:#ffffff;
+  stroke:#FFFFFF;
+  stroke-width:5px;
+}
+.svg_rps .svg_back{
+  fill: none;
+  stroke-width: 3px;
+}

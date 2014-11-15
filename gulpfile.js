@@ -3,33 +3,28 @@
 // Include Gulp & Tools We'll Use
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
-var del = require('del');
-var runSequence = require('run-sequence');
-var browserSync = require('browser-sync');
-var reload = browserSync.reload;
-var SRC='src';
-var DIST='dist';
-var jade_json_name='json';
-var ext_replace=require('gulp-ext-replace');
+var karma= require('karma').server;
 var fs = require('fs');
+var browserSync=require('browser-sync');
+var reload=browserSync.reload;
+
+var ext_replace=require('gulp-ext-replace');
+gulp.task('karma', function (done) {
+  karma.start({
+    configFile: __dirname + '/karma.conf.js'
+  }, done);
+});
 
 gulp.task('clean', function(cb)
 {
-  $.cached.caches={};
+  cached.caches={};
 });
 
-gulp.task('css', function () 
-{
-  src.styles = 'css/**/*.{css,less}';
-  return gulp.src('src/styles/bootstrap.less')
-    .pipe($.plumber())
-    .pipe($.less({sourceMap: !RELEASE, sourceMapBasepath: __dirname}))
-    .on('error', $.util.log)
-    .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))
-    .pipe($.csscomb())
-    .pipe($.if(RELEASE, $.minifyCss()))
-    .pipe(gulp.dest(DEST + '/css'))
-    .pipe($.if(watch, reload({stream: true})));
+gulp.task('less', function () {
+  gulp.src('./less/main.less')
+  .pipe($.less({
+  }))
+  .pipe(gulp.dest(__dirname+'/css'));
 });
 
 gulp.task('doc',function()
@@ -48,8 +43,16 @@ gulp.task('doc',function()
 
 gulp.task('build',['doc'],function(){
 });
-
-
+//TODO
+/*
+gulp.task('js',function()
+{
+  gulp.src('js/main.js')
+  //.pipe($.uglify())
+  .pipe($.rename("app.js"))
+  .pipe(gulp.dest('js'));
+});
+*/
 // Watch Files For Changes & Reload
 // Build and serve the output from the dist build
 gulp.task('serve', ['build'], function () {

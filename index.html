@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -7,13 +7,13 @@
     <title>Rock Paper Scisser Game - with AI</title>
     <link rel="icon" href="asset/logo_16x16.jpg">
     <!-- Bootstrap-->
-    <link rel='stylesheet', href='vendor/bootstrap/css/bootstrap.min.css'>
+    <!--<link rel='stylesheet', href='http://bootswatch.com/cosmo/bootstrap.min.css'>-->
     <!-- link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/darkly/bootstrap.min.css" -->
-    <link rel="stylesheet" href="css/css.css">
+    <link rel="stylesheet" href="css/main.css">
   </head>
   <body>
-    <div role="navigation" class="navbar navbar-default navbar-fixed-top">
-      <div class="container-fluid">
+    <div class="container">
+      <div role="navigation" class="navbar navbar-default">
         <div class="navbar-header">
           <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle">
             <span class="sr-only">Toggle navigation</span>
@@ -22,7 +22,7 @@
             <span class="icon-bar"></span>
           </button>
           <a href="#" class="navbar-brand">
-            Rock Paper Scisser with AI
+            Rock Paper Scisser AI
           </a>
         </div>
         <div class="navbar-collapse collapse">
@@ -30,7 +30,7 @@
             <li><a href="#">HOME</a></li>
             <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">DOCS<span class="caret"></span></a>
               <ul role="menu" class="dropdown-menu">
-                <li><a href="doc/requirement.html">Requirement</a></li>
+                <li><a href="https://github.com/lijiaqigreat/rps_ai/blob/gh-pages/doc/requirement.md">Requirement</a></li>
               </ul>
             </li>
           </ul>
@@ -41,25 +41,112 @@
       </div>
     </div>
     <div class="container" id="main">
-      <div id="intro">
-        <p>This is a rock paper scisser game</p>
-        <a href="doc/requirement.html">link</a>
-      </div>
-      <div id="game">
-        <div id="g_hand">
-          <button class="gh col-xs-4" id="gh_0" onclick="rps.choose(0)"></button>
-          <button class="gh col-xs-4" id="gh_1" onclick="rps.choose(1)"></button>
-          <button class="gh col-xs-4" id="gh_2" onclick="rps.choose(2)"></button>
-        </div>
-        <div id="g_result">
-          <div class="gr col-xs-6 h_0" id="gr_0">
+      <div id="game" >
+        <div id="g_result" class="row">
+          <div class="col-xs-6">
+            <div class="panel panel-primary">
+              <div class="panel-heading">
+                HUMAN
+              </div>
+              <div class="panel-body">
+                <img class="gr" src="asset/rps_r0.jpg" id="gr_0"/>
+              </div>
+            </div>
           </div>
-          <div class="gr col-xs-6" id="gr_1">
+          <div class="col-xs-6">
+            <div class="panel panel-primary">
+              <div class="panel-heading">
+                ROBOT
+              </div>
+              <div class="panel-body">
+                <img class="gr" src="asset/rps_r1.jpg" id="gr_1"/>
+              </div>
+            </div>
           </div>
         </div>
-        <div id="g_stat">
+        <div id="g_hand" class="row">
+          <div class="col-xs-4">
+            <div onclick="" class="btn btn-success">
+              <svg>
+                <use xlink:href="asset/rps.svg#svg_r0"></use>
+              </svg>
+              <div>Rock</div>
+            </div>
+          </div>
+          <div class="col-xs-4">
+            <div onclick="" class="btn btn-success">
+              <svg>
+                <use xlink:href="asset/rps.svg#svg_p0"></use>
+              </svg>
+              <div>Paper</div>
+            </div>
+          </div>
+          <div class="col-xs-4">
+            <div onclick="" class="btn btn-success">
+              <svg>
+                <use xlink:href="asset/rps.svg#svg_s0"></use>
+              </svg>
+              <div>Scisser</div>
+            </div>
+          </div>
         </div>
-        <div id="g_hist">
+        <div class="row">
+          <div class="col-xs-7">
+            <div class="panel panel-info" id="g_stat">
+              <div class="panel-heading">
+                Statistics
+              </div>
+              <div class="panel-body">
+                <table class="table" id="gis_table">
+                  <thead>
+                    <tr>
+                      <td>WIN</td>
+                      <td>TIE</td> 
+                      <td>LOST</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>0</td>
+                      <td>0</td> 
+                      <td>0</td>
+                    </tr>
+                    <tr>
+                      <td>???%</td>
+                      <td>???%</td> 
+                      <td>???%</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div>
+              <div class="btn-group">
+                <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">
+                  Choose robot <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">Separated link</a></li>
+                </ul>
+              </div>
+              <a type="button" class="btn btn-danger" href="#">Restart</a>
+            </div>
+          </div>
+          <div class="col-xs-5">
+            <div class="panel panel-info" id="g_hist">
+              <div class="panel-heading">
+                History
+              </div>
+              <div class="panel-body">
+                <div id="gh_scroll">
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div id="bot">
@@ -67,18 +154,26 @@
         </div>
         
       </div>
-      <div id="intro" class="name">
-        
+      <div id="intro">
+        <p>This is a rock paper scisser game</p>
+        <a href="doc/requirement.html">link</a>
       </div>
-
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins)-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <!-- <script>window.jQuery || document.write('<script src="/dist/lib/jquery-2.1.0.min.js"><\/script>')</script> -->
     <!-- Include all compiled plugins (below), or include individual files as needed-->
+    <div class="wasteland" id="server">
+      <div id="s_last">
+      0
+      </div>
+      <div id="s_param">
+      {}
+      </div>
+    </div>
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
     <script src="vendor/react.js"></script>
-    <script src="js/app.js"></script>
-    <!--script src="vendor/jquery.min.js"></script-->
+    <script src="vendor/require.js"></script>
+    <script src="main-require.js"></script>
   </body>
 </html>
