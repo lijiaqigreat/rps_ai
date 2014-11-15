@@ -3,32 +3,31 @@
 // Include Gulp & Tools We'll Use
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
+var karma= require('karma').server;
+var fs = require('fs');
 
 var ext_replace=require('gulp-ext-replace');
-var jasminePhantomJs = require('gulp-jasmine2-phantomjs');
+/*
 
-var fs = require('fs');
-var SRC='src';
-var DIST='dist';
+
+*/
+gulp.task('test', function (done) {
+  karma.start({
+    configFile: __dirname + '/karma.conf.js'
+  }, done);
+});
 
 gulp.task('clean', function(cb)
 {
   cached.caches={};
 });
 
-//gulp.task('css', function () 
-//{
-//  src.styles = 'css/**/*.{css,less}';
-//  return gulp.src('src/styles/bootstrap.less')
-//    .pipe($.plumber())
-//    .pipe($.less({sourceMap: !RELEASE, sourceMapBasepath: __dirname}))
-//    .on('error', $.util.log)
-//    .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))
-//    .pipe($.csscomb())
-//    .pipe($.if(RELEASE, $.minifyCss()))
-//    .pipe(gulp.dest(DEST + '/css'))
-//    .pipe($.if(watch, reload({stream: true})));
-//});
+gulp.task('less', function () {
+  gulp.src('./less/main.less')
+  .pipe($.less({
+  }))
+  .pipe(gulp.dest(__dirname+'/css/main.compile.css'));
+});
 
 gulp.task('doc',function()
 {
@@ -46,13 +45,9 @@ gulp.task('doc',function()
 
 gulp.task('build',['doc'],function(){
 });
-gulp.task('test', function() {
-  return gulp.src(specFiles).pipe(jasminePhantomJs());
-});
 gulp.task('js',function()
 {
   gulp.src('js/main.js')
-  .pipe($.browserify())
   //.pipe($.uglify())
   .pipe($.rename("app.js"))
   .pipe(gulp.dest('js'));
@@ -60,12 +55,8 @@ gulp.task('js',function()
 gulp.task('test-js', function()
 {
   gulp.src('test/test.js')
-  .pipe($.browserify())
   .pipe($.rename("test.min.js"))
   .pipe(gulp.dest('test'));
-});
-gulp.task('test', ['test-js'], function(){
-  gulp.watch(['js/**/*.js','test/**/*.js'], ['test-js']);
 });
 
 gulp.task('example', function()

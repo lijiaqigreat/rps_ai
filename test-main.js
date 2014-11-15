@@ -31,3 +31,15 @@ requirejs.config({
     // start test run, once Require.js is done
     callback: window.__karma__.start
 });
+
+
+
+
+
+
+
+
+
+
+
+

@@ -5,7 +5,9 @@ requirejs.config({
     paths: {
         'jquery': 'vendor/jquery',
         'underscore': 'vendor/underscore',
-        'Promise': 'vendor/promise-6.0.0.min'
+        'Promise': 'vendor/promise-6.0.0.min',
+        'jasmine': "vendor/jasmine-2.0.3/jasmine.js",
+        'jasmine-html': "vendor/jasmine-2.0.3/jasmine-html.js"
     },
 
     shim: {
@@ -14,8 +16,11 @@ requirejs.config({
         },
         'Promise': {
           exports: 'Promise'
+        },
+        'jasmine': {
+          exports: 'jasmine'
         }
-    },
+    }
 
     // ask Require.js to load these files (all our tests)
 
