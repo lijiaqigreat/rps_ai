@@ -44,6 +44,7 @@ gulp.task('doc',function()
 gulp.task('build',['doc'],function(){
 });
 //TODO
+/*
 gulp.task('js',function()
 {
   gulp.src('js/main.js')
@@ -51,6 +52,7 @@ gulp.task('js',function()
   .pipe($.rename("app.js"))
   .pipe(gulp.dest('js'));
 });
+*/
 // Watch Files For Changes & Reload
 // Build and serve the output from the dist build
 gulp.task('serve', ['build'], function () {

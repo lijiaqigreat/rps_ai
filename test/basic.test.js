@@ -36,6 +36,11 @@ define(["jquery","underscore","../js/text_to_url.js"],function($,_,t2u){
       });
 
     });
+    it("$.ajax",function(done)
+    {
+      Promise.resolve($.ajax("https://cdn.rawgit.com/lijiaqigreat/rps_ai/new/index.html"))
+      .then(function(x){console.log(x);done();});
+    });
     it("karma-html",function(){
       //var html=window.__html__["test/helper.html"];
       //console.log(html);

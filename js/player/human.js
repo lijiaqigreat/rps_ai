@@ -8,8 +8,11 @@ function(Promise,$){
 
     return Promise.resolve({
       getHand: function(h0,h1,dt){
+        console.log("human1");
+        console.log(param.doms);
         return new Promise(function(a,b){
           param.doms.forEach(function(e,i){
+            console.log(e);
             e.onclick=function(){
               a(i);
             };

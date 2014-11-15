@@ -17,13 +17,12 @@ function(Worker,Tokens,Promise,$,md5){
     var worker=new Worker();
     return Promise.resolve($.ajax(//load bot
     {
-      url:param.boturi,
-      dataType:"script",
+      url:param.boturi
     }))
     .then(function(str)//get dataparam
     {
       worker.init(str);
-    })
+    },function(error){console.log(error);throw error;})
     .then(function()
     {
       var uri=param.dataurl;

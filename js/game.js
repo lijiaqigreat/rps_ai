@@ -66,6 +66,7 @@ function(){
       }
 
       start();
+      console.log("start2");
       var promise=Promise.all([
           getHandWrapper(p1.getHand(h0,h1,dt),period,finish1),
           getHandWrapper(p2.getHand(h1,h0,dt),period,finish2)
