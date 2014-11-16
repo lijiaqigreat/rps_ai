@@ -71,7 +71,7 @@ function(){
           getHandWrapper(p2.getHand(h1,h0,dt),period,finish2)
         ])
         .then(function(hs){
-          if(hs[0]===3&&hs[1]===3){
+          if(hs[0]===3||hs[1]===3){
             throw "no one finish";
           }
           return hs;

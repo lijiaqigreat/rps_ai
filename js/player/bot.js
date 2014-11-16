@@ -22,6 +22,10 @@ function(Worker,Tokens,Promise,$,md5){
     }))
     .then(function(str)//get dataparam
     {
+      if(param.boturi.indexOf("api.github.com/repos")!==-1){
+        str=atob(str.content);
+        console.log(str);
+      }
       worker.init(str);
     },function(error){console.log(error);throw error;})
     .then(function()
