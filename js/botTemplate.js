@@ -2,7 +2,7 @@
  * A template of RPS Robot.
  * All nessesary api are provided.
  * It will be loaded by Web Worker
- * @module bots/template
+ * @module botTemplate
  */
 
 var bot={

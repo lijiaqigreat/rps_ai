@@ -34,7 +34,8 @@ function($,Game,template,Human,Bot){
         var hand12=hand1.map(function(h1,i){
           return h1+hand2[i]*4;
         });
-        expect(hand12).toEqual(game.history);
+        var history=game.history.map(function(x){return x&15;});
+        expect(hand12).toEqual(history);
         done();
       };
       var game=Game(h1,h2,100,start,nth,nth,end,10);
@@ -43,8 +44,8 @@ function($,Game,template,Human,Bot){
   describe("player:bot",function(){
     it("basic",function(done)
     {
-      var b1=Bot({boturi:"/base/js/bots/template.js",botparam:"{}",dataurl:" "});
-      var b2=Bot({boturi:"/base/js/bots/template.js",botparam:"{}",dataurl:" "});
+      var b1=Bot({boturi:"/base/js/botTemplate.js",botparam:"{}",dataurl:""});
+      var b2=Bot({boturi:"/base/js/botTemplate.js",botparam:"{}",dataurl:""});
       var nth=function(){};
       var n=20;
       var start=function(){

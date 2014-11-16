@@ -66,13 +66,12 @@ function(){
       }
 
       start();
-      console.log("start2");
       var promise=Promise.all([
           getHandWrapper(p1.getHand(h0,h1,dt),period,finish1),
           getHandWrapper(p2.getHand(h1,h0,dt),period,finish2)
         ])
         .then(function(hs){
-          if(hs[0]===3&&hs[1]===3){
+          if(hs[0]===3||hs[1]===3){
             throw "no one finish";
           }
           return hs;
@@ -84,11 +83,13 @@ function(){
     var recur=function(hs)
     {
       promise=promise.then(function(){
-        f.history.push((hs[0]&3)+(hs[1]&3)*4);
         var tmp=f.time;
         f.time=Date.now();
         tmp=f.time-tmp;
-        f.history2.push(tmp);
+        tmp=Math.log(tmp/64,1.5)|0;
+        if(tmp>15){tmp=15;}
+        if(tmp<0){tmp=0;}
+        f.history.push((hs[0]&3)+(hs[1]&3)*4+tmp*16);
         update(hs[0],hs[1],tmp)
         .then(recur,quit);
       });

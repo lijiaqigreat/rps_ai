@@ -13,6 +13,7 @@ function(Worker,Tokens,Promise,$){
    * However, once player is constructed,
    * we require player to only have interface listed in this template.
    * The following this recommended arguments for player constructor.
+   * The return is however fixed and the api for player is specified below.
    * @return {Promise} the player
    */
   return function(time){
@@ -28,7 +29,7 @@ function(Worker,Tokens,Promise,$){
        * @param {Number} dt milliseconds since last turn
        * @return {Promise} next hand
        */
-      getHand: function()
+      getHand: function(h0,h1,dt)
       {
         return new Promise(function(a,b){
           window.setTimeout(function(){a((Math.random()*3)|0);},time);

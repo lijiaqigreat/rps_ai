@@ -1,6 +1,5 @@
-define(["jquery","./game.js","./player/human.js","./player/bot.js","./consts.js"],
-function($,Game,Human,Bot,consts){
-  console.log("consts: "+consts);
+define(["jquery","./game.js","./player/human.js","./player/bot.js","./consts.js","../vendor/md5.js"],
+function($,Game,Human,Bot,consts,md5){
   var roundR=React.createClass(
   {
     render: function (){
@@ -20,14 +19,15 @@ function($,Game,Human,Bot,consts){
   {
     render: function (){
       var list=this.props.list.map(function(h01){
-        return new roundR({h0:h01%4,h1:(h01/4)|0});
+        return new roundR({h0:h01&3,h1:(h01/4)&3});
       }).reverse();
       return React.DOM.div({},list);
     }
   });
   var hands=$("#g_hand > div").toArray();
+  var param={boturi:"https://api.github.com/repos/lijiaqigreat/rps_markov/contents/main.js",botparam:"",dataurl:" "};
   var p1=Human({doms:hands});
-  var p2=Bot({boturi:"https://cdn.rawgit.com/lijiaqigreat/rps_ai/new/js/bots/template.js",botparam:"",dataurl:" "});
+  var p2=Bot(param);
   var game;
   p2.then(function(){
   },function(error){
@@ -38,9 +38,8 @@ function($,Game,Human,Bot,consts){
     if(h01===undefined){
       h01=15;
     }
-    console.log(consts);
-    var h0=h01%4;
-    var h1=(h01/4)|0;
+    var h0=h01&3;
+    var h1=(h01/4)&3;
     $("#gr_0").attr("src","asset/rps_"+consts.abbr[h0]+"0.jpg");
     $("#gr_1").attr("src","asset/rps_"+consts.abbr[h1]+"1.jpg");
 
@@ -50,8 +49,8 @@ function($,Game,Human,Bot,consts){
     //TODO
     var count=[0,0,0];
     game.history.forEach(function(h01){
-      var h0=h01%4;
-      var h1=(h01/4)|0;
+      var h0=h01&3;
+      var h1=(h01/4)&3;
       var win=(h1-h0+3)%3;
       if(h0===3){
         win=1;
@@ -61,7 +60,6 @@ function($,Game,Human,Bot,consts){
       }
       count[win]++;
     });
-    console.log("start1");
     var sum=count[0]+count[1]+count[2];
     var getPersent=function(i){
       if(sum===0){
@@ -70,7 +68,6 @@ function($,Game,Human,Bot,consts){
         return ((100*count[i]/sum+0.5)|0)+"%";
       }
     };
-    console.log("start1");
     var trs=$("#gis_table tbody").children();
     $(trs[0]).children().each(function(i){
       i=(i+2)%3;
@@ -85,7 +82,23 @@ function($,Game,Human,Bot,consts){
   var nth=function(){};
   var end=function()
   {
+    console.log("end!!!");
+    var hist=btoa(String.fromCharCode.apply(null,game.history));
+    var name="test-2014-11-16-100";
+    var hash=md5.digest_s(JSON.stringify(param));
+    var ip="http://54.69.127.139";
+    var data={hash:hash,name:name,hist:hist};
+    $.ajax({
+      type: "POST",
+      url: ip,
+      data: data,
+      success: function(){
+      },
+      error:function(err){
+        console.error(err);
+      }
+    });
   };
-  game=Game(p1,p2,0,start,nth,nth,end);
+  game=Game(p1,p2,0,start,nth,nth,end,100);
 
 });

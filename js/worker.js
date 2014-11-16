@@ -1,18 +1,17 @@
 /**
  * This provides a generic wrapper for web worker.
- * It allows async function call to the worker,
+ * It allows async function call to the worker through Promise,
  * and allows worker to send back debug information,
  * return value, error message.
+ * The worker can be stopped, reinitialized any time,
+ * without constructing new Worker.
  *
  * @see {@link js/workerTemplate} for API of the worker
  * 
  * @module js/worker
  */
 
-define(["./tokens.js"],function(Tokens){
-
-window.URL = window.URL || window.webkitURL;
-window.BlobBuilder = window.BlobBuilder || window.WebKitBlobBuilder || window.MozBlobBuilder;
+define(["./text_to_url.js","./tokens.js"],function(t2u,Tokens){
 
 var onmessageHelper=function (self,e)
 {
@@ -41,19 +40,7 @@ var onerrorHelper=function (self,e)
 };
 var getWorker=function (str)
 {
-  // URL.createObjectURL
-  //window.URL = window.URL || window.webkitURL;
-  var blob;
-  try {
-      blob = new Blob([str], {type: 'application/javascript'});
-  } catch (e)  // Backwards-compatibility
-  {
-      //window.BlobBuilder = window.BlobBuilder || window.WebKitBlobBuilder || window.MozBlobBuilder;
-      blob = new BlobBuilder();
-      blob.append(str);
-      blob = blob.getBlob();
-  }
-  var worker = new Worker(URL.createObjectURL(blob));
+  var worker = new Worker(t2u(str,"text/javascript"));
   var self=this;
   worker.onmessage=function(e){return onmessageHelper(self,e);};
   worker.onerror=function(e){return onerrorHelper(self,e);};
@@ -63,30 +50,36 @@ var getWorker=function (str)
 var proto=
 {
   /**
-   * source, url, 
    * this stops the worker and restart a new one
-   * @return promise
+   * @param {String} str the source code of the worker
+   * @return {Promise} none, when finished initializing
    */
-  init:function(obj)
+  init:function(str)
   {
     this.stop();
-    if(obj instanceof String){
-    }
-    this.worker=getWorker.call(this,obj);
+    this.worker=getWorker.call(this,str);
   },
+  /**
+   * instantly stop worker
+   * @return undefined
+   */
   stop:function()
   {
     if(this.worker!==null){
       var self=this;
-      this.tokens.all(function(token){
+      this.tokens.forEach(function(value,token){
         //console.log(self.tokens[token]);
-        self.tokens[token].b("worker stopped");
+        value.b("worker stopped");
       });
       this.tokens=new Tokens();
       this.worker.terminate();
       this.worker=null;
     }
   },
+  /**
+   * simulate calling an async method
+   * @return {Promise} simulate async return
+   */
   call:function()
   {
     var args=arguments;
@@ -101,15 +94,12 @@ var proto=
       self.worker.postMessage(list);
     });
   }
-
 };
 var workergen=function()
 {
   this.worker=null;
   this.tokens=new Tokens();
   this.promise=Promise.resolve();
-  this._onmessage=null;
-  this._onerror=null;
 };
 workergen.prototype=proto;
 return workergen;
