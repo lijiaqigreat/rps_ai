@@ -9,8 +9,9 @@ function(Worker,Tokens,Promise,$,md5){
    * @param {String} param.boturi uri of the bot source 
    * @param {Object} param.botparam custom param for the bot
    * @param {String} param.dataurl url of the data used to get data
-   * if it ends with '?' or '&' the player will append the attribute
-   * with key being "hash" and value being the md5 of the string form of param
+   * If it ends with '?' or '&' the player will append the attribute
+   * with key being "hash" and value being the md5 of the string form of param.
+   * If it is empty string, then data will be undefined
    */
   return function(param)
   {
@@ -26,6 +27,9 @@ function(Worker,Tokens,Promise,$,md5){
     .then(function()
     {
       var uri=param.dataurl;
+      if(uri===""){
+        return undefined;
+      }
       var end=uri[uri.length-1];
       if(end==='?'||end==='&'){
         var hash=md5(JSON.stringify(param));//TODO build md5 convert webpage
@@ -37,8 +41,10 @@ function(Worker,Tokens,Promise,$,md5){
         dataType:"json"
       }))
       .catch(function(error){
-        //TODO report error
-        return {};
+        console.warn("Error loading bot data");
+        console.warn(error);
+        console.warn("Using undefined as data");
+        return undefined;
       });
     })
     .then(function(data)//init bot
@@ -55,7 +61,7 @@ function(Worker,Tokens,Promise,$,md5){
         },
         stop:function()
         {
-          //TODO
+          worker.stop();
         }
       };
     });

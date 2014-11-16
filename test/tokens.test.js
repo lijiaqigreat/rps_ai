@@ -28,11 +28,11 @@ function(Tokens,_)
       expect(key2.length).toEqual(this.key.length);
       expect(key2).toEqual(this.key);
     });
-    it("can call all", function()
+    it("can call forEach", function()
     {
       var self=this;
       var i=0;
-      this.tokens.all(function(key,value){
+      this.tokens.forEach(function(value,key){
         expect(self.key[i]).toBe(key);
         expect(self.value[i]).toBe(value);
         i++;
@@ -48,7 +48,7 @@ function(Tokens,_)
         }else{
         }
       }
-      this.tokens.all(function(key,value){
+      this.tokens.forEach(function(value,key){
         count++;
         expect(value).toBeLessThan(0.5);
       });

@@ -26,8 +26,9 @@ function($,Game,Human,Bot,consts){
     }
   });
   var hands=$("#g_hand > div").toArray();
+  var param={boturi:"https://cdn.rawgit.com/lijiaqigreat/rps_ai/new/js/botTemplate.js",botparam:"",dataurl:" "};
   var p1=Human({doms:hands});
-  var p2=Bot({boturi:"https://cdn.rawgit.com/lijiaqigreat/rps_ai/new/js/bots/template.js",botparam:"",dataurl:" "});
+  var p2=Bot(param);
   var game;
   p2.then(function(){
   },function(error){
@@ -85,7 +86,15 @@ function($,Game,Human,Bot,consts){
   var nth=function(){};
   var end=function()
   {
+    var hist=btoa(String.fromCharCode.apply(game.history));
+    var name="test";
+    var hash=md5(JSON.stringify(param));
+    var ip="http://54.69.127.139";
+    var data={hash:hash,name:name,hist:hist};
+    $.put(ip,data,function(){
+      console.log("!!!!!!!");
+    });
   };
-  game=Game(p1,p2,0,start,nth,nth,end);
+  game=Game(p1,p2,20000,start,nth,nth,end);
 
 });

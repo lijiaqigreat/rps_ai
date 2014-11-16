@@ -19,6 +19,14 @@
     "server":
     [
       "custom logic to reject malacious request"
+    ],
+    "page":
+    [
+      "md5",
+      "github to cdn",
+      "javascript editor",
+      "trainer",
+      "leaderboard"
     ]
   },
   "design":
@@ -45,8 +53,9 @@
       "game":
       {
         "hash":"String",
-        "date":"long",
-        "name":"String"
+        "time":"long",
+        "name":"String",
+        "history":"Blob"
       },
       "global":
       {
@@ -61,6 +70,7 @@
         "reject spam",
         "update stat",
         "provide games for trainer",
+        "regular remove db",
         ""
       ]
     },
