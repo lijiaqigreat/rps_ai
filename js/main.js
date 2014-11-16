@@ -84,7 +84,7 @@ function($,Game,Human,Bot,consts,md5){
   {
     console.log("end!!!");
     var hist=btoa(String.fromCharCode.apply(null,game.history));
-    var name="test1";
+    var name="test-2014-11-16-100";
     var hash=md5.digest_s(JSON.stringify(param));
     var ip="http://54.69.127.139";
     var data={hash:hash,name:name,hist:hist};
