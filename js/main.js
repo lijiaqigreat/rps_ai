@@ -99,6 +99,6 @@ function($,Game,Human,Bot,consts,md5){
       }
     });
   };
-  game=Game(p1,p2,0,start,nth,nth,end,100);
+  game=Game(p1,p2,0,start,nth,nth,end,50);
 
 });

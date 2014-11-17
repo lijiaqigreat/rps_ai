@@ -55,11 +55,17 @@
         "hash":"String",
         "time":"long",
         "name":"String",
-        "history":"Blob"
+        "history":"Blob",
+        "total":"Number",
+        "wins":"persent"
       },
-      "global":
+      "bot":// only keep interesting ones
       {
-        "stats":"??"
+        "hash":"String",
+        "popularity":"",
+        "performance":"",
+        "plot":"",//total vs wins vs date
+        "nickname":""
       }
     },
     "server":
