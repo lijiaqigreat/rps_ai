@@ -26,6 +26,10 @@ function(){
     });
   }
   /**
+   * list errors thrown:
+   * no one finish
+   * no more turns
+   * (error thrown by player)
    * @param {Promise} g1 first player
    * @param {Promise} g2 second player
    * @param {function} start to be called at the beginning of each round

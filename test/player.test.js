@@ -1,5 +1,5 @@
-define(["jquery","../js/game.js","../js/player/template.js","../js/player/human.js","../js/player/bot.js"],
-function($,Game,template,Human,Bot){
+define(["jquery","../js/PlayerError.js","../js/game.js","../js/player/template.js","../js/player/human.js","../js/player/bot.js"],
+function($,PlayerError,Game,template,Human,Bot){
   describe("player:human",function()
   {
     it("basic",function(done)
@@ -42,21 +42,34 @@ function($,Game,template,Human,Bot){
     });
   });
   describe("player:bot",function(){
+    var nth=function(){};
     it("basic",function(done)
     {
       var b1=Bot({boturi:"/base/js/botTemplate.js",botparam:"{}",dataurl:""});
       var b2=Bot({boturi:"/base/js/botTemplate.js",botparam:"{}",dataurl:""});
-      var nth=function(){};
       var n=20;
-      var start=function(){
-      };
       var end=function(message)
       {
         expect(message).toBe("no more turns");
         expect(game.history.length).toBe(n);
         done();
       };
-      var game=Game(b1,b2,100,start,nth,nth,end,n);
+      var game=Game(b1,b2,100,nth,nth,nth,end,n);
+
+    });
+    it("handle bot source not found",function(done)
+    {
+      var b1=Bot({boturi:"/base/js/botTemplate.js",botparam:"{}",dataurl:""});
+      var b2=Bot({boturi:"/base/js/botTemplate2.js",botparam:"{}",dataurl:""});
+      var n=20;
+      var end=function(message)
+      {
+        //console.log(message.message);
+        expect(message instanceof PlayerError).toBe(true);
+        expect(message.message.indexOf("uri")!==-1).toBe(true);
+        done();
+      };
+      var game=Game(b1,b2,100,nth,nth,nth,end,n);
 
     });
   });
