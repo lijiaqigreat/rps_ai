@@ -121,20 +121,55 @@
                 </table>
               </div>
             </div>
-            <div>
-              <div class="btn-group">
-                <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">
-                  Choose robot <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu">
-                  <li><a href="#">Action</a></li>
-                  <li><a href="#">Another action</a></li>
-                  <li><a href="#">Something else here</a></li>
-                  <li class="divider"></li>
-                  <li><a href="#">Separated link</a></li>
-                </ul>
+            <div class="panel panel-primary">
+              <div class="panel-heading">
+                CHOOSE THE BOT
               </div>
-              <a type="button" class="btn btn-danger" href="#">Restart</a>
+              <div class="panel-body">
+
+                <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                  <div class="btn-group" role="group">
+                <select class="form-control">
+                  <option value="">1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+                  </div>
+                  <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-danger btn-block" >Restart</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-primary">
+              <div class="panel-heading">
+                ADVANCED
+              </div>
+              <div class="panel-body">
+                <form role="form">
+
+                  <div class="form-group">
+                    <div class="input-group">
+                      <span class="input-group-addon">Source</span>
+                      <input type="text" class="form-control" placeholder="Enter URL for bot source code"></input>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="input-group">
+                      <span class="input-group-addon">Data</span>
+                      <input type="text" class="form-control" placeholder="Enter URL for data used by the bot"></input>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="botparam">Bot Parameter</label>
+                    <textarea id="botparam" class="form-control" rows="3"></textarea>
+                  </div>
+                  <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+              </div>
+              
             </div>
           </div>
           <div class="col-xs-5">
