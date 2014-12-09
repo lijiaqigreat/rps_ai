@@ -6370,7 +6370,7 @@ table .info a,
 }
 #g_hist #gh_scroll {
   overflow-y: auto;
-  height: 25em;
+  height: 45em;
 }
 @media screen and (max-width: 2000px) {
   #main {

@@ -1,5 +1,5 @@
-define(["jquery","./game.js","./player/human.js","./player/bot.js","./consts.js","../vendor/md5.js"],
-function($,Game,Human,Bot,consts,md5){
+define(["jquery","./game.js","./player/human.js","./player/bot.js","./consts.js"],
+function($,Game,Human,Bot,consts){
   var roundR=React.createClass(
   {
     render: function (){
@@ -24,16 +24,19 @@ function($,Game,Human,Bot,consts,md5){
       return React.DOM.div({},list);
     }
   });
-  var hands=$("#g_hand > div").toArray();
-  var param={boturi:"https://api.github.com/repos/lijiaqigreat/rps_markov/contents/main.js",botparam:"",dataurl:" "};
-  var p1=Human({doms:hands});
-  var p2=Bot(param);
+  var getParam=function(){
+    return {
+      boturi:$("#ga_source").val(),
+      dataurl:$("#ga_data").val(),
+      botparam:$("#ga_param").val()
+    };
+  };
   var game;
-  p2.then(function(){
-  },function(error){
-  });
+  var hands=$("#g_hand > div").toArray();
   var start=function()
   {
+    console.log(game.history);
+    global=game;
     var h01=game.history[game.history.length-1];
     if(h01===undefined){
       h01=15;
@@ -68,7 +71,7 @@ function($,Game,Human,Bot,consts,md5){
         return ((100*count[i]/sum+0.5)|0)+"%";
       }
     };
-    var trs=$("#gis_table tbody").children();
+    var trs=$("#gs_table tbody").children();
     $(trs[0]).children().each(function(i){
       i=(i+2)%3;
       this.innerHTML=count[i]>99?"99+":count[i];
@@ -82,23 +85,82 @@ function($,Game,Human,Bot,consts,md5){
   var nth=function(){};
   var end=function()
   {
+
     console.log("end!!!");
-    var hist=btoa(String.fromCharCode.apply(null,game.history));
-    var name="test-2014-11-16-100";
-    var hash=md5.digest_s(JSON.stringify(param));
-    var ip="http://54.69.127.139";
-    var data={hash:hash,name:name,hist:hist};
-    $.ajax({
-      type: "POST",
-      url: ip,
-      data: data,
-      success: function(){
-      },
-      error:function(err){
-        console.error(err);
+    console.log(game.history);
+    global2=game;
+    if(game.history.length!==0){
+      var hist=btoa(String.fromCharCode.apply(null,game.history));
+      
+      var name=$("#gc_name").val();
+      if(name===""){
+        name="anonymous";
       }
-    });
+      var hash=JSON.stringify(getParam());
+      var ip="http://54.69.127.139";
+      var data=JSON.stringify({hash:hash,name:name,hist:hist});
+      console.log(data);
+      $.ajax({
+        type: "POST",
+        url: ip,
+        data: data,
+        success: function(){
+        },
+        error:function(err){
+          console.error(err);
+        }
+      });
+    }
+    var param=getParam();
+    var p1=Human({doms:hands});
+    var p2=Bot(param);
+    game=Game(p1,p2,0,start,nth,nth,end,50);
   };
-  game=Game(p1,p2,0,start,nth,nth,end,50);
+  var globalLock=false;
+  var resetGame=function()
+  {
+    console.log("game reset");
+    if(globalLock===true){
+      return;
+    }
+    if(game!==undefined){
+      //STOP
+      glabolLock=true;
+      game.terminate();
+      globalLock=false;
+    }
+  };
+  var startGame=function(){
+    var param=getParam();
+    var p1=Human({doms:hands});
+    var p2=Bot(param);
+    game=Game(p1,p2,0,start,nth,nth,end,50);
+  };
+  $.get("js/botList.json",function(data){
+    var domlist=$("#gc_choose > ul");
+    console.log(data);
+    var datalist=data.bots;
+    console.log(datalist);
+    datalist.forEach(function(e,i){
+      var dom=$("<li><a></a></li>");
+      dom.children().text(e.name);
+      dom.on("click",function(){
+        $("#ga_source").val(e.param.boturi);
+        $("#ga_data").val(e.param.dataurl);
+        $("#ga_param").val(e.param.botparam);
+        resetGame();
+      });
+      domlist.append(dom);
+    });
+    $($("#gc_choose > ul > *")[0]).click();
+    startGame();
+    $("#gc_restart").on("click",resetGame);
+    $("#ga_submit").on("click",resetGame);
+  });
+  window.onbeforeunload=function(){
+    game.terminate();
+    return "The game will be uploaded to the server. Thank you for the support!";
+  };
+  
 
 });

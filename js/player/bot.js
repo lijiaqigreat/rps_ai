@@ -3,8 +3,8 @@
  * It creates a Web Worker that encapsolates bot
  * @see {@link bot/template} for api of bot
  */
-define(['../PlayerError.js','../worker.js','../tokens.js','Promise','jquery','../../vendor/md5.js'],
-function(PlayerError,Worker,Tokens,Promise,$,md5){
+define(['../PlayerError.js','../worker.js','../tokens.js','Promise','jquery'],
+function(PlayerError,Worker,Tokens,Promise,$){
   var BotError=function(message,error){
     PlayerError.call(this,message,error);
   };
@@ -64,7 +64,7 @@ function(PlayerError,Worker,Tokens,Promise,$,md5){
         }
         var end=uri[uri.length-1];
         if(end==='?'||end==='&'){
-          var hash=md5(JSON.stringify(param));//TODO build md5 convert webpage
+          var hash=JSON.stringify(param);
           uri+="hash="+hash;
         }
       }catch(error){

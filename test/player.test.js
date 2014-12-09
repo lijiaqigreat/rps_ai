@@ -72,5 +72,9 @@ function($,PlayerError,Game,template,Human,Bot){
       var game=Game(b1,b2,100,nth,nth,nth,end,n);
 
     });
+    xit("handle bot source not readable",function()
+    {
+      console.warn("Cannot test reading bot source from github");
+    });
   });
 });
