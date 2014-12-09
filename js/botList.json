@@ -1,0 +1,22 @@
+{
+  "bots":
+  [
+    {
+      "name":"default",
+      "param":{
+        "boturi":"https://api.github.com/repos/lijiaqigreat/rps_markov/contents/main.js",
+        "dataurl":"",
+        "botparam":""
+      }
+    },
+    {
+      "name":"random",
+      "param":{
+        "boturi":"",
+        "dataurl":"",
+        "botparam":""
+      }
+
+    }
+  ]
+}

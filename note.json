@@ -6,14 +6,15 @@
   {
     "important":
     {
-      "doc":"jsdoc",
-      "api":"consistent"
+      "md5":"who knows value?",
+      "api":"consistent",
+      "production":"requirejs",
+      "when to submit history":""
     },
     "bot api":
     [
       "handle error",
       "handle not ready",
-      "able to debug",
       "able to be transparent"
     ],
     "server":
@@ -31,37 +32,29 @@
   },
   "design":
   {
-    "pro":
-    {
-      "simpler design":
-      {
-        "no global, user difference":"",
-        "simpler robot":"",
-        "robot is 100% javascript":"",
-        "simpler datastore":""
-      }
-    },
-    "con":
-    {
-      "malicious client can mess up data":
-      {
-        "advanced server can check against it":""
-      }
-    },
     "database":
     {
       "game":
       {
-        "hash":"String",
+        "bot":"json",
         "time":"long",
         "name":"String",
         "history":"Blob",
+
+        "ip":"String",
         "total":"Number",
-        "wins":"persent"
+        "score":"Number"
+      },
+      "stat":
+      {
+        "stat_id":"String",
+        "bot":"json",
+        "time":"long",
+        "stat":"json"//array of (bot,time,name,score)
       },
       "bot":// only keep interesting ones
       {
-        "hash":"String",
+        "bot":"json",
         "popularity":"",
         "performance":"",
         "plot":"",//total vs wins vs date
@@ -145,6 +138,16 @@
   },
   "tmp":
   {
+    "scoreboard":
+    {
+      "see all-time 100 best":"need single cache",
+      "see monthly 100 best":"need nothing"
+    },
+    "error":
+    {
+      "catch by game",
+      "show to user"
+    },
     "0.5B per turn":"",
     "json fold":"http://www.bodurov.com/JsonFormatter/",
     "doc":"http://blog.fusioncharts.com/2013/12/jsdoc-vs-yuidoc-vs-doxx-vs-docco-choosing-a-javascript-documentation-generator/",

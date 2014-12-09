@@ -17,7 +17,6 @@ gulp.task('karma', function (done) {
 
 gulp.task('clean', function(cb)
 {
-  cached.caches={};
 });
 
 gulp.task('less', function () {
@@ -41,7 +40,7 @@ gulp.task('doc',function()
   .pipe(gulp.dest('doc'));
 });
 
-gulp.task('build',['doc'],function(){
+gulp.task('build',['doc','less'],function(){
 });
 //TODO
 /*
@@ -62,6 +61,7 @@ gulp.task('serve', ['build'], function () {
       baseDir: ['./']
     }
   });
+  gulp.watch(['less'],['less',reload]);
   gulp.watch(['index.html','js','css','bots','asset','vendor'], [reload]);
   gulp.watch(['doc/*.md'],['doc',reload]);
 });

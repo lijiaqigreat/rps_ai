@@ -98,7 +98,7 @@
                 Statistics
               </div>
               <div class="panel-body">
-                <table class="table" id="gis_table">
+                <table class="table" id="gs_table">
                   <thead>
                     <tr>
                       <td>WIN</td>
@@ -121,20 +121,51 @@
                 </table>
               </div>
             </div>
-            <div>
-              <div class="btn-group">
-                <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">
-                  Choose robot <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu">
-                  <li><a href="#">Action</a></li>
-                  <li><a href="#">Another action</a></li>
-                  <li><a href="#">Something else here</a></li>
-                  <li class="divider"></li>
-                  <li><a href="#">Separated link</a></li>
-                </ul>
+            <div id="g_control" class="panel">
+              <div class="input-group">
+                <span class="input-group-addon">Name</span>
+                <input id="gc_name" type="text" class="form-control" placeholder="Enter your name"></input>
               </div>
-              <a type="button" class="btn btn-danger" href="#">Restart</a>
+              <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                <div id="gc_choose" class="btn-group" role="group">
+                    <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">
+                      Choose robot <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                    </ul>
+                </div>
+                <div class="btn-group" role="group">
+                  <button id="gc_restart" type="button" class="btn btn-danger btn-block" >Restart</button>
+                </div>
+              </div>
+            </div>
+            <div id="g_advanced" class="panel panel-primary">
+              <div class="panel-heading">
+                ADVANCED
+              </div>
+              <div class="panel-body">
+                <div role="form">
+
+                  <div class="form-group">
+                    <div class="input-group">
+                      <span class="input-group-addon">Source</span>
+                      <input id="ga_source" type="text" class="form-control" placeholder="Enter URL for bot source code"></input>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="input-group">
+                      <span class="input-group-addon">Data</span>
+                      <input id="ga_data" type="text" class="form-control" placeholder="Enter URL for data used by the bot"></input>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="botparam">Bot Parameter</label>
+                    <textarea id="ga_param" class="form-control" rows="3"></textarea>
+                  </div>
+                  <button id="ga_submit" class="btn btn-default">Submit</button>
+                </div>
+              </div>
+              
             </div>
           </div>
           <div class="col-xs-5">
