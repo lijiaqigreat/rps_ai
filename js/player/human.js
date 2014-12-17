@@ -10,9 +10,9 @@ function(Promise,$){
       getHand: function(h0,h1,dt){
         return new Promise(function(a,b){
           param.doms.forEach(function(e,i){
-            e.onclick=function(){
+            $(e).click(function(){
               a(i);
-            };
+            });
           });
         });
       },

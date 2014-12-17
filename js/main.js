@@ -32,10 +32,10 @@ function($,Game,Human,Bot,consts){
     };
   };
   var game;
+  var param;
   var hands=$("#g_hand > div").toArray();
   var start=function()
   {
-    console.log(game.history);
     global=game;
     var h01=game.history[game.history.length-1];
     if(h01===undefined){
@@ -66,7 +66,7 @@ function($,Game,Human,Bot,consts){
     var sum=count[0]+count[1]+count[2];
     var getPersent=function(i){
       if(sum===0){
-        return "???%";
+        return "0%";
       }else{
         return ((100*count[i]/sum+0.5)|0)+"%";
       }
@@ -111,7 +111,6 @@ function($,Game,Human,Bot,consts){
         }
       });
     }
-    var param=getParam();
     var p1=Human({doms:hands});
     var p2=Bot(param);
     game=Game(p1,p2,0,start,nth,nth,end,50);
@@ -131,28 +130,26 @@ function($,Game,Human,Bot,consts){
     }
   };
   var startGame=function(){
-    var param=getParam();
+    param=getParam();
     var p1=Human({doms:hands});
     var p2=Bot(param);
     game=Game(p1,p2,0,start,nth,nth,end,50);
   };
   $.get("js/botList.json",function(data){
-    var domlist=$("#gc_choose > ul");
+    var domlist=$("#gc_choose > ul > li");
     console.log(data);
     var datalist=data.bots;
     console.log(datalist);
-    datalist.forEach(function(e,i){
-      var dom=$("<li><a></a></li>");
-      dom.children().text(e.name);
-      dom.on("click",function(){
-        $("#ga_source").val(e.param.boturi);
-        $("#ga_data").val(e.param.dataurl);
-        $("#ga_param").val(e.param.botparam);
-        resetGame();
-      });
-      domlist.append(dom);
+    var clickhelper=function(){
+      $("#ga_source").val(this.dataset.boturi);
+      $("#ga_data").val(this.dataset.dataurl);
+      $("#ga_param").val(this.dataset.botparam);
+      resetGame();
+    };
+    domlist.each(function(i,e){
+      $(e).on("click",clickhelper);
     });
-    $($("#gc_choose > ul > *")[0]).click();
+    domlist[0].click();
     startGame();
     $("#gc_restart").on("click",resetGame);
     $("#ga_submit").on("click",resetGame);

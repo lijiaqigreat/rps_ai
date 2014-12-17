@@ -6,10 +6,8 @@
   {
     "important":
     {
-      "md5":"who knows value?",
       "api":"consistent",
-      "production":"requirejs",
-      "when to submit history":""
+      "production":"requirejs"
     },
     "bot api":
     [
@@ -21,13 +19,20 @@
     [
       "custom logic to reject malacious request"
     ],
+    "home":
+    [
+      "choose robot",
+      "instruction",
+      "human choice image",
+      "speed"
+    ],
     "page":
     [
-      "md5",
       "github to cdn",
       "javascript editor",
       "trainer",
-      "leaderboard"
+      "leaderboard",
+      "bot vs. bot"
     ]
   },
   "design":
@@ -145,8 +150,8 @@
     },
     "error":
     {
-      "catch by game",
-      "show to user"
+      "catch by game":"",
+      "show to user":""
     },
     "0.5B per turn":"",
     "json fold":"http://www.bodurov.com/JsonFormatter/",

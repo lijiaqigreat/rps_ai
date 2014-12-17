@@ -6361,11 +6361,11 @@ table .info a,
   width: 100%;
   margin-bottom: 21px;
 }
-#g_stat #gis_table {
+#g_stat #gs_table {
   width: 100%;
   margin-bottom: 0px;
 }
-#g_stat #gis_table td {
+#g_stat #gs_table td {
   text-align: center;
 }
 #g_hist #gh_scroll {

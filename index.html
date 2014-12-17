@@ -6,9 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Rock Paper Scisser Game - with AI</title>
     <link rel="icon" href="asset/logo_16x16.jpg">
-    <!-- Bootstrap-->
-    <!--<link rel='stylesheet', href='http://bootswatch.com/cosmo/bootstrap.min.css'>-->
-    <!-- link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/darkly/bootstrap.min.css" -->
     <link rel="stylesheet" href="css/main.css">
   </head>
   <body>
@@ -113,9 +110,9 @@
                       <td>0</td>
                     </tr>
                     <tr>
-                      <td>???%</td>
-                      <td>???%</td> 
-                      <td>???%</td>
+                      <td>0%</td>
+                      <td>0%</td> 
+                      <td>0%</td>
                     </tr>
                   </tbody>
                 </table>
@@ -129,9 +126,10 @@
               <div class="btn-group btn-group-justified" role="group" aria-label="...">
                 <div id="gc_choose" class="btn-group" role="group">
                     <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">
-                      Choose robot <span class="caret"></span>
+                      Robot <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
+                      <li data-boturi="https://api.github.com/repos/lijiaqigreat/rps_markov/contents/main.js" data-dataurl="" data-botparam=""><a>default</a></li>
                     </ul>
                 </div>
                 <div class="btn-group" role="group">
@@ -181,14 +179,19 @@
           </div>
         </div>
       </div>
-      <div id="bot">
-        <div id="b_status">
-        </div>
-        
-      </div>
       <div id="intro">
-        <p>This is a rock paper scisser game</p>
-        <a href="doc/requirement.html">link</a>
+        <p>
+          <strong>INTRO: </strong>
+          This is a game where you can play Rock Paper Scissor against robot. The robot uses artificial intelegence and masive database. It is more likely to win than lose against average human.
+        <p>
+          <strong>HOW TO PLAY: </strong>
+          To choose your hand, click on either one of the three button ROCK, PAPER, SCISSER. The result will be displayed on the top for each round after choosing your hand. To change the type of robot or restart the game, press corsponding buttons.
+        </p>
+        <p>
+          <strong>ADVANCED: </strong>
+          You can build or choose custom robot to play with by changing the attributes on the advanced section.
+          Click <a href="not_implemented.html">here</a> for more info.
+        </p>
       </div>
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins)-->
