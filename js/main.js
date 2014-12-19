@@ -1,29 +1,5 @@
 define(["jquery","./game.js","./player/human.js","./player/bot.js","./consts.js"],
 function($,Game,Human,Bot,consts){
-  var roundR=React.createClass(
-  {
-    render: function (){
-      return React.DOM.div(
-        {className: "roundR"},
-        React.DOM.div({className: "roundRc"},
-          React.DOM.img({src:"asset/rps_"+consts.abbr[this.props.h0]+"0.jpg"})
-        ),
-        React.DOM.div({className: "roundRc"},consts.result[(this.props.h1-this.props.h0+3)%3]),
-        React.DOM.div({className: "roundRc"},
-          React.DOM.img({src:"asset/rps_"+consts.abbr[this.props.h1]+"1.jpg"})
-        )
-      );
-    }
-  });
-  var roundsR=React.createClass(
-  {
-    render: function (){
-      var list=this.props.list.map(function(h01){
-        return new roundR({h0:h01&3,h1:(h01/4)&3});
-      }).reverse();
-      return React.DOM.div({},list);
-    }
-  });
   var getParam=function(){
     return {
       boturi:$("#ga_source").val(),
@@ -40,14 +16,27 @@ function($,Game,Human,Bot,consts){
     var h01=game.history[game.history.length-1];
     if(h01===undefined){
       h01=15;
+      return;
     }
     var h0=h01&3;
     var h1=(h01/4)&3;
-    $("#gr_0").attr("src","asset/rps_"+consts.abbr[h0]+"0.jpg");
-    $("#gr_1").attr("src","asset/rps_"+consts.abbr[h1]+"1.jpg");
-
+    
+    //$("#gr_0 > img").removeClass("gr_0i1").attr("src","asset/rps_"+consts.abbr[h0]+"0.jpg").addClass("gr_0i1");
+    $("#gr_0 > img")
+      .attr("src","asset/rps_"+consts.abbr[h0]+"0.jpg")
+      .toggleClass("gr_0i0")
+      .toggleClass("gr_0i1");
+    $("#gr_1 > img")
+      .attr("src","asset/rps_"+consts.abbr[h1]+"1.jpg")
+      .toggleClass("gr_1i0")
+      .toggleClass("gr_1i1");
     //update history
-    React.renderComponent(new roundsR({list:game.history}),$("#gh_scroll")[0]);
+    $("#gh_scroll").prepend(
+      $("#w_roundR").html()
+        .replace(/p(?=(0\.jpg))/,consts.abbr[h0])
+        .replace(/p(?=(1\.jpg))/,consts.abbr[h1])
+        .replace(/TIE/,consts.result[(h1-h0+3)%3])
+    );
     //update stat
     //TODO
     var count=[0,0,0];
@@ -88,8 +77,10 @@ function($,Game,Human,Bot,consts){
 
     console.log("end!!!");
     console.log(game.history);
+    $("#gh_scroll").html("");
     global2=game;
     if(game.history.length!==0){
+      return;
       var hist=btoa(String.fromCharCode.apply(null,game.history));
       
       var name=$("#gc_name").val();

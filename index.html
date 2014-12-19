@@ -42,32 +42,26 @@
         <p class="lead">Play 50 rounds, and your game will be recorded to server. Thank you for the support!</p>
         <div id="g_result" class="row">
           <div class="col-xs-6">
-            <div class="panel panel-primary">
-              <div class="panel-heading">
-                HUMAN
-              </div>
-              <div class="panel-body">
-                <img class="gr" src="asset/rps_r0.jpg" id="gr_0"/>
-              </div>
+            <div id="gr_0">
+              <img class="gr_0i1 gr img-circle" src="asset/rps_r0.jpg"/>
             </div>
+            <h4>HUMAN</h4>
           </div>
           <div class="col-xs-6">
-            <div class="panel panel-primary">
-              <div class="panel-heading">
-                ROBOT
-              </div>
-              <div class="panel-body">
-                <img class="gr" src="asset/rps_r1.jpg" id="gr_1"/>
-              </div>
+            <div id="gr_1">
+              <img class="gr_1i1 gr img-circle" src="asset/rps_r1.jpg">
             </div>
+            <h4>ROBOT</h4>
           </div>
         </div>
         <div id="g_hand" class="row">
           <div class="col-xs-4">
             <div onclick="" class="btn btn-success">
-              <svg>
-                <use xlink:href="asset/rps.svg#svg_r0"></use>
-              </svg>
+              <div>
+                <svg>
+                  <use xlink:href="asset/rps.svg#svg_r0"></use>
+                </svg>
+              </div>
               <div>Rock</div>
             </div>
           </div>
@@ -192,6 +186,16 @@
           You can build or choose custom robot to play with by changing the attributes on the advanced section.
           Click <a href="not_implemented.html">here</a> for more info.
         </p>
+        <p id="debug">
+        </p>
+        <div class="progress">
+          <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+            60% Complete
+          </div>
+          <div class="progress-bar progress-bar-error" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 30%;">
+            60% Complete
+          </div>
+        </div>
       </div>
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins)-->
@@ -199,15 +203,19 @@
     <!-- <script>window.jQuery || document.write('<script src="/dist/lib/jquery-2.1.0.min.js"><\/script>')</script> -->
     <!-- Include all compiled plugins (below), or include individual files as needed-->
     <div class="wasteland" id="server">
-      <div id="s_last">
-      0
-      </div>
-      <div id="s_param">
-      {}
+      <div id="w_roundR">
+        <div class="roundR">
+          <div class="roundRc">
+            <img src="asset/rps_p0.jpg">
+          </div>
+          <div class="roundRc">TIE</div>
+          <div class="roundRc">
+            <img src="asset/rps_p1.jpg">
+          </div>
+        </div>
       </div>
     </div>
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-    <script src="vendor/react.js"></script>
     <script src="vendor/require.js"></script>
     <script src="main-require.js"></script>
   </body>

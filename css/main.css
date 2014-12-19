@@ -6294,14 +6294,6 @@ table .info a,
 .popover {
   color: #333333;
 }
-.box {
-  -webkit-border-radius: 21px;
-  -moz-border-radius: 21px;
-  border-radius: 21px;
-  padding: 12.6px;
-  background-color: #e6e6e6;
-  margin: 0px;
-}
 .flexp {
   display: flex;
   display: -webkit-box;
@@ -6309,9 +6301,53 @@ table .info a,
   display: -ms-flexbox;
   display: -webkit-flex;
 }
+@-webkit-keyframes leftin {
+  0% {
+    -webkit-transform: translate(-100%, 0);
+  }
+  100% {
+    -webkit-transform: translate(0, 0);
+  }
+}
+@-webkit-keyframes leftin2 {
+  0% {
+    -webkit-transform: translate(-100%, 0);
+  }
+  100% {
+    -webkit-transform: translate(0, 0);
+  }
+}
+@-webkit-keyframes rightin {
+  0% {
+    -webkit-transform: translate(100%, 0);
+  }
+  100% {
+    -webkit-transform: translate(0, 0);
+  }
+}
+@-webkit-keyframes rightin2 {
+  0% {
+    -webkit-transform: translate(100%, 0);
+  }
+  100% {
+    -webkit-transform: translate(0, 0);
+  }
+}
 .wasteland {
   position: absolute;
   top: -100000px;
+}
+.gr_0i0 {
+  -webkit-animation: leftin .4s;
+}
+.gr_0i1 {
+  -webkit-animation: leftin2 .4s;
+}
+.gr_1i0 {
+  -webkit-animation: rightin .4s;
+}
+.gr_1i1 {
+  -webkit-animation: rightin2 .4s;
 }
 .roundR {
   border-radius: 5%;
@@ -6337,18 +6373,15 @@ table .info a,
 .roundR .roundRc img {
   width: 100%;
 }
-#g_result .panel-body {
-  display: flex;
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  justify-content: center;
+#g_result {
+  text-align: center;
 }
 #g_result img.gr {
-  width: 10em;
+  width: 14em;
+  display: block;
+  margin: auto;
   max-width: 100%;
-  border: 4px solid #2780e3;
+  border: 4px solid black;
 }
 #g_hand .gh {
   border: solid #3fb618 0.5em;

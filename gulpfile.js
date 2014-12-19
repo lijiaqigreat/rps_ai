@@ -61,7 +61,7 @@ gulp.task('serve', ['build'], function () {
       baseDir: ['./']
     }
   });
-  gulp.watch(['less'],['less',reload]);
-  gulp.watch(['index.html','js','css','bots','asset','vendor'], [reload]);
+  gulp.watch(['less/**'],['less',reload]);
+  gulp.watch(['index.html','js/**','css/**','bots/**','asset/**','vendor/**'], [reload]);
   gulp.watch(['doc/*.md'],['doc',reload]);
 });

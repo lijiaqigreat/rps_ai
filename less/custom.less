@@ -1,15 +1,45 @@
 
 @gap-size:@grid-gutter-width;
 
-.box
-{
-  .border-radius(@gap-size);
-  padding:@gap-size*0.6;
-  background-color:@gray-lighter;
-  margin:0px;
-}
-
 @import "helper.less";
+
+
+@-webkit-keyframes leftin {
+  0% {
+    -webkit-transform: translate(-100%, 0);
+  }
+
+  100% {
+    -webkit-transform: translate(0, 0);
+  }
+}
+@-webkit-keyframes leftin2 {
+  0% {
+    -webkit-transform: translate(-100%, 0);
+  }
+
+  100% {
+    -webkit-transform: translate(0, 0);
+  }
+}
+@-webkit-keyframes rightin {
+  0% {
+    -webkit-transform: translate(100%, 0);
+  }
+
+  100% {
+    -webkit-transform: translate(0, 0);
+  }
+}
+@-webkit-keyframes rightin2 {
+  0% {
+    -webkit-transform: translate(100%, 0);
+  }
+
+  100% {
+    -webkit-transform: translate(0, 0);
+  }
+}
 
 
 .wasteland
@@ -17,6 +47,24 @@
   position: absolute;
   top: -100000px;
 }
+
+.gr_0i0
+{
+  -webkit-animation: leftin .4s;
+}
+.gr_0i1
+{
+  -webkit-animation: leftin2 .4s;
+}
+.gr_1i0
+{
+  -webkit-animation: rightin .4s;
+}
+.gr_1i1
+{
+  -webkit-animation: rightin2 .4s;
+}
+
 .roundR
 {
   border-radius:5%;
@@ -33,18 +81,23 @@
     }
   }
 }
+#gr_0 img {
+  //-webkit-animation: leftin .4s;
+}
+#gr_1 img {
+  //-webkit-animation: rightin .4s;
+}
 
 #g_result
 {
-  .panel-body{
-    .flexp;
-    justify-content:center;
-  }
+  text-align:center;
   img.gr
   {
-    width:10em;
+    width:14em;
+    display:block;
+    margin:auto;
     max-width:100%;
-    border:4px solid @brand-primary;
+    border:4px solid black;
   }
 
 }
@@ -52,6 +105,7 @@
   .gh{
     border: solid @brand-success 0.5em;
   }
+  
   svg{
     width:100%;
     height:2em;
