@@ -1,175 +1,41 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Rock Paper Scisser Game - with AI</title>
-    <link rel="icon" href="asset/logo_16x16.jpg">
-    <!-- Bootstrap-->
-    <link rel='stylesheet', href='vendor/bootstrap/css/bootstrap.min.css'>
-    <!-- link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/darkly/bootstrap.min.css" -->
-    <link rel="stylesheet" href="css/css2.css">
-  </head>
-  <body>
-    <div class="container">
-      <div role="navigation" class="navbar navbar-inverse">
-        <div class="navbar-header">
-          <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a href="#" class="navbar-brand">
-            Rock Paper Scisser AI
-          </a>
-        </div>
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="#">HOME</a></li>
-            <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">DOCS<span class="caret"></span></a>
-              <ul role="menu" class="dropdown-menu">
-                <li><a href="doc/requirement.html">Requirement</a></li>
-              </ul>
-            </li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="https://github.com/lijiaqigreat/rps_ai">View on Github</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="container" id="main">
-      <div id="game" >
-        <div id="g_result" class="row">
-          <div class="col-xs-6">
-            <img class="gr" src="asset/rps_r0.jpg" id="gr_0">
-          </div>
-          <div class="col-xs-6">
-            <img class="gr" src="asset/rps_r1.jpg" id="gr_1">
-          </div>
-        </div>
-        <div id="g_stat">
-          <div class="zcell" style="width:67%">
-            <p class="zh3">Statistics:</p>
-            <div class="zbox">
-              <table class="zscore table table-striped">
-                <thead>
-                  <tr>
-                    <td>WIN</td>
-                    <td>TIE</td> 
-                    <td>LOST</td>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>8</td>
-                    <td>4</td> 
-                    <td>12</td>
-                  </tr>
-                  <tr>
-                    <td>33%</td>
-                    <td>17%</td> 
-                    <td>50%</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div>
-              Tweet
-            </div>
-          </div><!--
-          --><div class="zcell" style="width:33%">
-            <p class="zh3">history:</p>
-            <div class="zbox">
-              <div class="zhistory">
-                <div class="zroundr">
-                  <div class="zroundrc ">
-                    <img src="asset/rps_r0.jpg">
-                  </div><!--
-                  --><div class="zroundrc"><span>lose</span></div><!--
-                  --><div class="zroundrc ">
-                    <img src="asset/rps_p1.jpg">
-                  </div>
-                </div>
-                <div class="zroundr">
-                  <div class="zroundrc ">
-                    <img src="asset/rps_r0.jpg">
-                  </div><!--
-                  --><div class="zroundrc">lose</div><!--
-                  --><div class="zroundrc ">
-                    <img src="asset/rps_p1.jpg">
-                  </div>
-                </div>
-                <div class="zroundr">
-                  <div class="zroundrc ">
-                    <img src="asset/rps_r0.jpg">
-                  </div><!--
-                  --><div class="zroundrc">lose</div><!--
-                  --><div class="zroundrc ">
-                    <img src="asset/rps_p1.jpg">
-                  </div>
-                </div>
-                <div class="zroundr">
-                  <div class="zroundrc ">
-                    <img src="asset/rps_r0.jpg">
-                  </div><!--
-                  --><div class="zroundrc"><span>lose</span></div><!--
-                  --><div class="zroundrc ">
-                    <img src="asset/rps_p1.jpg">
-                  </div>
-                </div>
-                <div class="zroundr">
-                  <div class="zroundrc ">
-                    <img src="asset/rps_r0.jpg">
-                  </div><!--
-                  --><div class="zroundrc"><span>lose</span></div><!--
-                  --><div class="zroundrc ">
-                    <img src="asset/rps_p1.jpg">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div id="g_hand" class="row">
-          <div class="col-xs-4">
-            <div class="gh" onclick="rps.choose(0)">
-              <img src="asset/rps_r0.jpg">
-            </div>
-          </div>
-          <div class="col-xs-4">
-            <div class="gh" onclick="rps.choose(1)">
-              <img src="asset/rps_p0.jpg">
-            </div>
-          </div>
-          <div class="col-xs-4">
-            <div class="gh" onclick="rps.choose(2)">
-              <img src="asset/rps_s0.jpg">
-            </div>
-          </div>
-        </div>
-        <div id="g_hist" class="row">
-        </div>
-      </div>
-      <div id="bot">
-        <div id="b_status">
-        </div>
-        
-      </div>
-      <div id="intro">
-        <p>This is a rock paper scisser game</p>
-        <a href="doc/requirement.html">link</a>
-      </div>
-    </div>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins)-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rock Paper Scisser Game - with AI</title>
+  <link rel="icon" href="asset/logo_16x16.jpg">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <!-- <script>window.jQuery || document.write('<script src="/dist/lib/jquery-2.1.0.min.js"><\/script>')</script> -->
-    <!-- Include all compiled plugins (below), or include individual files as needed-->
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-    <script src="vendor/react.js"></script>
-    <script src="js/app2.js"></script>
-    <!--script src="vendor/jquery.min.js"></script-->
+    <script src="vendor/bootstrap-3.3.1-dist/js/bootstrap.min.js"></script>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+      Launch demo modal
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">
+                <span aria-hidden="true">&times;</span>
+                <span class="sr-only">Close</span>
+              </button>
+              <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
   </body>
 </html>

@@ -2,11 +2,18 @@ define(["jquery","./game.js","./player/human.js","./player/bot.js","./consts.js"
 function($,Game,Human,Bot,consts){
   var getParam=function(){
     return {
-      boturi:$("#ga_source").val(),
-      dataurl:$("#ga_data").val(),
-      botparam:$("#ga_param").val()
+      boturi:$("#wa_source").val(),
+      dataurl:$("#wa_data").val(),
+      botparam:$("#wa_param").val()
     };
   };
+  var getName=function(){
+    return $("#g_name").text();
+  };
+  $("#wh_submit").on("click",function(){
+    var name=$("#wh_name").val();
+    $("#g_name").text(name);
+  });
   var game;
   var param;
   var hands=$("#g_hand > div").toArray();
@@ -31,8 +38,9 @@ function($,Game,Human,Bot,consts){
       .toggleClass("gr_1i0")
       .toggleClass("gr_1i1");
     //update history
-    $("#gh_scroll").prepend(
+    $("#rh_tbody").prepend(
       $("#w_roundR").html()
+        .replace("td>1</td","td>"+game.history.length+"</td")
         .replace(/p(?=(0\.jpg))/,consts.abbr[h0])
         .replace(/p(?=(1\.jpg))/,consts.abbr[h1])
         .replace(/TIE/,consts.result[(h1-h0+3)%3])
@@ -55,20 +63,23 @@ function($,Game,Human,Bot,consts){
     var sum=count[0]+count[1]+count[2];
     var getPersent=function(i){
       if(sum===0){
-        return "0%";
+        return (100/3)+"%";
       }else{
         return ((100*count[i]/sum+0.5)|0)+"%";
       }
     };
-    var trs=$("#gs_table tbody").children();
-    $(trs[0]).children().each(function(i){
+    $("#s_bar > div").each(function(i){
       i=(i+2)%3;
-      this.innerHTML=count[i]>99?"99+":count[i];
+      $(this).css("width",getPersent(i));
     });
-    $(trs[1]).children().each(function(i){
+    $("#s_text > span").each(function(i){
+      if(i===0){
+        this.innerHTML=sum;
+        return;
+      }
       //change order for gui
-      i=(i+2)%3;
-      this.innerHTML=getPersent(i);
+      i=(i-1+2)%3;
+      this.innerHTML=count[i];
     });
   };
   var nth=function(){};
@@ -77,13 +88,13 @@ function($,Game,Human,Bot,consts){
 
     console.log("end!!!");
     console.log(game.history);
-    $("#gh_scroll").html("");
+    $("#rh_tbody").html("");
     global2=game;
     if(game.history.length!==0){
       return;
       var hist=btoa(String.fromCharCode.apply(null,game.history));
       
-      var name=$("#gc_name").val();
+      var name=getName();
       if(name===""){
         name="anonymous";
       }
@@ -126,27 +137,38 @@ function($,Game,Human,Bot,consts){
     var p2=Bot(param);
     game=Game(p1,p2,0,start,nth,nth,end,50);
   };
-  $.get("js/botList.json",function(data){
-    var domlist=$("#gc_choose > ul > li");
+  $.getJSON("js/botList.json",function(data){
     console.log(data);
-    var datalist=data.bots;
-    console.log(datalist);
+    var html=$("#wb_list").html();
+    global2=html;
+    console.log(html);
+    var list=$("#wb_list").empty();
     var clickhelper=function(){
-      $("#ga_source").val(this.dataset.boturi);
-      $("#ga_data").val(this.dataset.dataurl);
-      $("#ga_param").val(this.dataset.botparam);
+      
+      list.children().removeClass("active");
+      var param=$(this).addClass("active").data("param");
+      console.log(param);
+      $("#wa_source").val(param.boturi);
+      $("#wa_data").val(param.dataurl);
+      $("#wa_param").val(param.botparam);
       resetGame();
     };
-    domlist.each(function(i,e){
-      $(e).on("click",clickhelper);
+    data.bots.forEach(function(e){
+      console.log(e);
+      var newE=$(html
+        .replace("${name}",e.name)
+        .replace("${description}",e.description))
+      .data("param",e.param)
+      .on("click",clickhelper);
+      list.append(newE);
     });
-    domlist[0].click();
+    list.children()[0].click();
     startGame();
-    $("#gc_restart").on("click",resetGame);
-    $("#ga_submit").on("click",resetGame);
+    $("#wa_submit").on("click",resetGame);
   });
   window.onbeforeunload=function(){
     game.terminate();
+    return;
     return "The game will be uploaded to the server. Thank you for the support!";
   };
   

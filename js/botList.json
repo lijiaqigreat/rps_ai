@@ -2,7 +2,8 @@
   "bots":
   [
     {
-      "name":"default",
+      "name":"Andrey",
+      "description":"Presumably the best robot of all. Named after Andrey Markov.",
       "param":{
         "boturi":"https://api.github.com/repos/lijiaqigreat/rps_markov/contents/main.js",
         "dataurl":"",
@@ -10,7 +11,8 @@
       }
     },
     {
-      "name":"random",
+      "name":"Randy",
+      "description":"Totally random move. Impossible to beat or be beaten.",
       "param":{
         "boturi":"",
         "dataurl":"",

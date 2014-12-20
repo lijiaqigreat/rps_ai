@@ -41,6 +41,16 @@
   }
 }
 
+footer{
+  margin: 5em 0px;
+  text-align:center;
+}
+
+footer li {
+  display:inline-block;
+  margin-right:1em;
+  margin-left:1em;
+}
 
 .wasteland
 {
@@ -65,27 +75,8 @@
   -webkit-animation: rightin2 .4s;
 }
 
-.roundR
-{
-  border-radius:5%;
-  margin-bottom:2%;
+#gr_0, #gr_1{
   overflow:hidden;
-  background-color:white;
-  .flexp;
-  .roundRc{
-    .flexc;
-    text-align:center;
-    font-size:80%;
-    img{
-      width:100%;
-    }
-  }
-}
-#gr_0 img {
-  //-webkit-animation: leftin .4s;
-}
-#gr_1 img {
-  //-webkit-animation: rightin .4s;
 }
 
 #g_result
@@ -93,7 +84,7 @@
   text-align:center;
   img.gr
   {
-    width:14em;
+    width:12em;
     display:block;
     margin:auto;
     max-width:100%;
@@ -112,7 +103,6 @@
   }
   > div > .btn{
     width:100%;
-    margin-bottom:@line-height-computed;
   }
 }
 #g_stat{
@@ -124,10 +114,16 @@
     }
   }
 }
-#g_hist{
-  #gh_scroll{
-    overflow-y:auto;
-    height:35em;
+#rh_heading h4{
+  text-align:center;
+}
+#rh_body {
+  img{
+    height:3em;
+  }
+  th,td{
+    text-align:center;
+    vertical-align:middle;
   }
 }
 
@@ -143,7 +139,7 @@
 }
 @media screen and (max-width: 500px) {
   #main{
-    font-size:12px;
+    font-size:14px;
   }
 }
 .svg_rps{
@@ -154,4 +150,15 @@
 .svg_rps .svg_back{
   fill: none;
   stroke-width: 3px;
+}
+.progress{
+  height:30px;
+}
+@test-pre:0%;
+#s_bar{
+  height:8px;
+  margin-bottom:0px;
+}
+#s_text{
+  text-align:center;
 }
