@@ -1,6 +1,7 @@
 define([],
 function(){
   var PlayerError=function(message, data){
+
     this.message="PLAYER: "+message;
     this.data=data;
   };

@@ -19,7 +19,7 @@ function($,PlayerError,Game,template,Human,Bot){
       var click=function(hand,doms){
         var h=(Math.random()*3)|0;
         hand.push(h);
-        doms[h].onclick();
+        $(doms[h]).click();
       };
       var start=function()
       {
@@ -54,23 +54,21 @@ function($,PlayerError,Game,template,Human,Bot){
         expect(game.history.length).toBe(n);
         done();
       };
-      var game=Game(b1,b2,100,nth,nth,nth,end,n);
+      var game=Game(b1,b2,200,nth,nth,nth,end,n);
 
     });
     it("handle bot source not found",function(done)
     {
       var b1=Bot({boturi:"/base/js/botTemplate.js",botparam:"{}",dataurl:""});
-      var b2=Bot({boturi:"/base/js/botTemplate2.js",botparam:"{}",dataurl:""});
+      var b2=Bot({boturi:"/base/js/botTemplate___.js",botparam:"{}",dataurl:""});
       var n=20;
       var end=function(message)
       {
-        //console.log(message.message);
         expect(message instanceof PlayerError).toBe(true);
         expect(message.message.indexOf("uri")!==-1).toBe(true);
         done();
       };
       var game=Game(b1,b2,100,nth,nth,nth,end,n);
-
     });
     xit("handle bot source not readable",function()
     {

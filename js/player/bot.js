@@ -37,7 +37,8 @@ function(PlayerError,Worker,Tokens,Promise,$){
       url:param.boturi
     }))
     .catch(function(error){
-      throw new BotError("Cannot load bot source from uri. message: "+error.statusText+".", error);
+      var botError=new BotError("Cannot load bot source from uri. message: "+error.statusText+".", error);
+      throw botError;
     })
     .then(function(str)//get dataparam
     {

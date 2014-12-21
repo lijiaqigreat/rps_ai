@@ -27,6 +27,15 @@ var bot={
     return;
   },
   /**
+   * method for retrieving dataParam
+   * @static
+   * @param {Object} param the parameter for bot (independent of method used)
+   * @return {Object} data param TODO link api
+   */
+  getDataParam:function(param){
+    return {};
+  },
+  /**
    * initialize bot
    * @param {Object} param the parameter for bot (independent of method used)
    * @param {Object} data used to initialize state of bot
@@ -34,7 +43,19 @@ var bot={
    */
   init:function(param,data){
     return;
-  }
+  },
+  /**
+   * a static method used for training bot offline
+   * @static
+   * 
+   * @param {Object} param the parameter for bot (independent of method used)
+   * @param {Object} data the old used to initialize state of bot
+   * @param {Array} games games used for bot to train TODO reference game api
+   * @return {Object} new state of bot after training
+   */
+  train:function(param,data,games){
+    return data;
+  },
 };
 /**
  * There have to be a self.onmessage that handles all function calls

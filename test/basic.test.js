@@ -36,7 +36,8 @@ define(["jquery","underscore","../js/text_to_url.js"],function($,_,t2u){
       });
 
     });
-    it("karma-html",function(){
+    it("karma-html",function()
+    {
       //var html=window.__html__["test/helper.html"];
       //console.log(html);
 

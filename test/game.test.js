@@ -1,7 +1,8 @@
 define(["../js/game.js","../js/player/template.js"],
 function(Game,template){describe("game",function()
 {
-  it("basic",function(done){
+  it("basic",function(done)
+  {
     var p1=template(0);
     var p2=template(0);
     var nth=function(){};
@@ -22,7 +23,8 @@ function(Game,template){describe("game",function()
     };
     game=Game(p1,p2,0,nth,nth,nth,end,n);
   });
-  it("stop when slow",function(done){
+  it("stop when slow",function(done)
+  {
     var p1=template(100);
     var p2=template(100);
     var nth=function(){};
@@ -34,7 +36,8 @@ function(Game,template){describe("game",function()
     };
     game=Game(p1,p2,1,nth,nth,nth,end,10);
   });
-  it("stop when asked",function(done){
+  it("stop when asked",function(done)
+  {
     var p1=template(100);
     var p2=template(100);
     var nth=function(){};

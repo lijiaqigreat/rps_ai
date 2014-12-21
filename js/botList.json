@@ -14,7 +14,7 @@
       "name":"Randy",
       "description":"Totally random move. Impossible to beat or be beaten.",
       "param":{
-        "boturi":"",
+        "boturi":"js/botTemplate.js",
         "dataurl":"",
         "botparam":""
       }
