@@ -66,33 +66,33 @@ function(Game,Human,Bot,consts){
     }
     var h0=h01&3;
     var h1=(h01/4)&3;
-    
+
     //update result
     updateResult(h0,h1);
 
     //update history
     $("#rh_tbody").prepend(
-      $("#w_roundR").html()
+        $("#w_roundR").html()
         .replace("td>1</td","td>"+game.history.length+"</td")
         .replace(/x(?=(0\.jpg))/,consts.abbr[h0])
         .replace(/x(?=(1\.jpg))/,consts.abbr[h1])
         .replace(/TIE/,consts.result[(h1-h0+3)%3])
-    );
+        );
 
     //update stat
     var count=[0,0,0];
     game.history.forEach(function(h01){
-      var h0=h01&3;
-      var h1=(h01/4)&3;
-      var win=(h1-h0+3)%3;
-      if(h0===3){
+        var h0=h01&3;
+        var h1=(h01/4)&3;
+        var win=(h1-h0+3)%3;
+        if(h0===3){
         win=1;
-      }
-      if(h1===3){
+        }
+        if(h1===3){
         win=2;
-      }
-      count[win]++;
-    });
+        }
+        count[win]++;
+        });
     updateStat(count);
 
     //update bot
@@ -113,7 +113,7 @@ function(Game,Human,Bot,consts){
     }
 
     //global=game;
-    if((game.history.length!==0)&&false){//debug
+    if((game.history.length!==0)){//debug
       //submit game
       var hist=btoa(String.fromCharCode.apply(null,game.history));
       var name=getName();

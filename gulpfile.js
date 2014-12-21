@@ -22,7 +22,26 @@ gulp.task('less', function () {
   }))
   .pipe($.uncss({
     html:["index.html"],
-    ignore: [".svg_rps",".svg_rps .svg_back",".gr_1i1",".gr_1i1",".gr_1i0",".gr_0i0",]
+    ignore: [
+      //svg
+      ".svg_rps",
+      ".svg_rps .svg_back",
+      //result animation 
+      ".gr_1i1",
+      ".gr_1i1",
+      ".gr_1i0",
+      ".gr_0i0",
+      //history animation
+      ".collapse",
+      ".collapsed",
+      ".collapse.in",
+      ".collapsing",
+      //histort table
+      "#rh_body img",
+      "#rh_body td",
+      //???
+      ".wasteland"
+    ]
   }))
   .pipe(gulp.dest(__dirname+'/css'));
 });
