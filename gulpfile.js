@@ -20,6 +20,7 @@ gulp.task('less', function () {
   .pipe($.less({
     plugins:[cleancss]
   }))
+  /* 
   .pipe($.uncss({
     html:["index.html"],
     ignore: [
@@ -43,6 +44,7 @@ gulp.task('less', function () {
       ".wasteland"
     ]
   }))
+  */
   .pipe(gulp.dest(__dirname+'/css'));
 });
 gulp.task("js",function(){
