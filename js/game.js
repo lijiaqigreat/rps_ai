@@ -5,8 +5,8 @@
  * 3: (both player return result) check result
  * 4: 
  */
-define(['./worker.js','./tokens.js','Promise','jquery'],
-function(){
+define(['Promise'],
+function(Promise){
   function debug(message){
     console.error(message.stack);
     throw message;

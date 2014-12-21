@@ -7,6 +7,7 @@
   <title>Rock Paper Scisser Game - with AI</title>
   <link rel="icon" href="asset/logo-16x16.png">
   <link rel="stylesheet" href="css/main.css">
+  <script src="http://24.217.193.147:8080/target/target-script-min.js#anonymous"></script>
 </head>
 <body>
   <div role="navigation" class="navbar navbar-default">
@@ -19,7 +20,7 @@
           <span class="icon-bar"></span>
         </button>
         <a href="#" class="navbar-brand">
-          Rock Paper Scisser AI
+          Rock Paper Scisser
         </a>
       </div>
       <div class="navbar-collapse collapse">
@@ -38,6 +39,7 @@
     </div>
   </div>
   <div class="container" id="main">
+    <!--
     <div class="alert alert-dismissible">
       <button type="button" class="close" data-dismiss="alert">
         <span aria-hidden="true">&times;</span>
@@ -45,11 +47,12 @@
       </button>
       Play 50 rounds, and your game will be recorded to server. Thank you for the support!
     </div>
+    -->
     <div id="game" class="panel panel-primary ">
       <ul class="list-group">
         <li class="list-group-item list-group-item-danger ">
           Robot <span class="glyphicon glyphicon-user"></span> &#187;
-          <pre><code id="g_bottext">I'm ready to play!</code></pre>
+          <pre><code id="g_bottext">Hi, I'm Andrey. Let's play a game. Press any of three buttons below to start.</code></pre>
         </li>
         <button type="button" class="btn-block list-group-item active " data-toggle="modal" data-target="#w_bot" class="btn-block list-group-item active ">
           <span class="glyphicon glyphicon-user"></span> <span id="g_botname">Andrey</span> <span class="glyphicon glyphicon-edit"></span>
@@ -124,7 +127,7 @@
       <div class="panel panel-default" id="r_hist">
         <div id="rh_heading" role="tab" class="panel-heading">
           <h4 class="panel-title">
-            <a class="collapsed" data-toggle="collapse" data-parent="#rest" href="#rh_body" aria-expanded="false" aria-controls="rh_body">
+            <a style="color: white;" class="collapsed" data-toggle="collapse" data-parent="#rest" href="#rh_body" aria-expanded="false" aria-controls="rh_body">
               History
             </a>
           </h4>
@@ -167,8 +170,8 @@
   <!-- <script>window.jQuery || document.write('<script src="/dist/lib/jquery-2.1.0.min.js"><\/script>')</script> -->
   <!-- Include all compiled plugins (below), or include individual files as needed-->
   <script src="vendor/bootstrap-3.3.1-dist/js/bootstrap.min.js"></script>
-  <script src="vendor/require.js"></script>
-  <script src="main-require.js"></script>
+  <script src="vendor/require.min.js"></script>
+  <script src="js/main.min.js"></script>
   <div class="wasteland">
     <img src="asset/rps_r0.jpg">
     <img src="asset/rps_p0.jpg">

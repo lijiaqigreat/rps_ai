@@ -1,5 +1,5 @@
 define([],function(){
-  return {
+  var f= {
     randomInt:function(n)
     {
       return Math.random()*n | 0;
@@ -23,7 +23,22 @@ define([],function(){
       ],
       [
         "I'm broken... %&#$@^"
+      ],
+      [
+        "I'm ready to play!"
       ]
     ]
   };
+  var max=0;
+  f.bottext.forEach(function(e){
+    e.forEach(function(x){
+      max=max>x.length?max:x.length;
+    });
+  });
+  f.bottext.forEach(function(e){
+    e.forEach(function(e,i,a){
+      a[i]=e+Array(max-e.length+1).join(" ");
+    });
+  });
+  return f;
 });

@@ -3,8 +3,8 @@
  * It creates a Web Worker that encapsolates bot
  * @see {@link bot/template} for api of bot
  */
-define(['../PlayerError.js','../worker.js','../tokens.js','Promise','jquery'],
-function(PlayerError,Worker,Tokens,Promise,$){
+define(['../PlayerError.js','../worker.js','../tokens.js','Promise'],
+function(PlayerError,Worker,Tokens,Promise){
   var BotError=function(message,error){
     PlayerError.call(this,message,error);
   };

@@ -1,5 +1,5 @@
-define(["jquery","./game.js","./player/human.js","./player/bot.js","./consts.js"],
-function($,Game,Human,Bot,consts){
+define(["./game.js","./player/human.js","./player/bot.js","./consts.js"],
+function(Game,Human,Bot,consts){
   //define helper
   var getParam=function()
   {
@@ -138,12 +138,11 @@ function($,Game,Human,Bot,consts){
   };
   var startGame=function()
   {
-
-    $("#g_bottext").text("I'm ready to play!");
-
     $("#rh_tbody").html("");
     if(game!==undefined){
       updateResult(3,3);
+      setBottext(4);
+      //$("#g_bottext").text("I'm ready to play!");
     }
     updateStat([0,0,0]);
     param=getParam();
@@ -197,12 +196,6 @@ function($,Game,Human,Bot,consts){
     list.children()[0].click();
     $("#wa_submit").on("click",resetGame);
   });
-
-  window.onbeforeunload=function()
-  {
-    game.terminate();
-    //return "The game will be uploaded to the server. Thank you for the support!";
-  };
   
 
 });

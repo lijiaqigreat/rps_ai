@@ -1,5 +1,5 @@
-define(['Promise','jquery'],
-function(Promise,$){
+define(['Promise'],
+function(Promise){
   /**
    * @param {DOM[3]} param.doms three buttuns wait to be clicked
    */

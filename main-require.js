@@ -3,8 +3,8 @@ requirejs.config({
     baseUrl: '',
 
     paths: {
-        'jquery': 'vendor/jquery',
-        'underscore': 'vendor/underscore',
+        'jquery': 'vendor/jquery.min',
+        'underscore': 'vendor/underscore.min',
         'Promise': 'vendor/promise-6.0.0.min'
     },
 
