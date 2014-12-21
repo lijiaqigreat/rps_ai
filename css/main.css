@@ -1300,8 +1300,16 @@ footer li {
   top: -100000px;
 }
 
+.gr_0i0 {
+  -webkit-animation: leftin .4s;
+}
+
 .gr_0i1 {
   -webkit-animation: leftin2 .4s;
+}
+
+.gr_1i0 {
+  -webkit-animation: rightin .4s;
 }
 
 .gr_1i1 {

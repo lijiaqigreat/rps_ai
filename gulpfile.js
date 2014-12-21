@@ -22,7 +22,7 @@ gulp.task('less', function () {
   }))
   .pipe($.uncss({
     html:["index.html"],
-    ignore: [".svg_rps",".svg_rps .svg_back"]
+    ignore: [".svg_rps",".svg_rps .svg_back",".gr_1i1",".gr_1i1",".gr_1i0",".gr_0i0",]
   }))
   .pipe(gulp.dest(__dirname+'/css'));
 });
