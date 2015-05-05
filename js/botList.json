@@ -11,6 +11,24 @@
       }
     },
     {
+      "name":"Sofia",
+      "description":"It tries to combine the simple strategy and choose whatever works",
+      "param":{
+        "boturi":"https://api.github.com/repos/lijiaqigreat/rps_main/contents/main.js",
+        "dataurl":"",
+        "botparam":""
+      }
+    },
+    {
+      "name":"Matt",
+      "description":"Don't ever use the same strategy twice! It will always play against it.",
+      "param":{
+        "boturi":"https://api.github.com/repos/lijiaqigreat/rps_kn/contents/main.js",
+        "dataurl":"",
+        "botparam":""
+      }
+    },
+    {
       "name":"Randy",
       "description":"Totally random move. Impossible to beat or be beaten.",
       "param":{
@@ -18,7 +36,6 @@
         "dataurl":"",
         "botparam":""
       }
-
     }
   ]
 }

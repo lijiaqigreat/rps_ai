@@ -105,8 +105,7 @@ gulp.task('serve_test', function() {
     notify: false,
     server: {
       baseDir: ["./"]
-    },
-    port:80 
+    }
   });
 });
 
