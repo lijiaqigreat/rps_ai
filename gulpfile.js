@@ -47,6 +47,28 @@ gulp.task('less', function () {
   */
   .pipe(gulp.dest(__dirname+'/css'));
 });
+gulp.task("js2",function(){
+  $.requirejs({
+    name: "js/main2.js",
+    baseUrl: '.',
+    out:"main2.min.js",
+    paths: {
+        'underscore': 'vendor/underscore.min',
+        'Promise': 'vendor/promise-6.0.0.min'
+    },
+
+    shim: {
+        'underscore': {
+          exports: '_'
+        },
+        'Promise': {
+          exports: 'Promise'
+        }
+    }
+  })
+  .pipe(gulp.dest("js/"));
+
+});
 gulp.task("js",function(){
   $.requirejs({
     name: "js/main.js",
