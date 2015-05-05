@@ -87,7 +87,7 @@ function(Promise){
     //REALLY COMPLICATED
     var update=function (h0,h1,dt)
     {
-      if(n--===0){
+      if(n--===-1){
         f.terminate("no more turns");
         return;
         //return Promise.reject("no more turns");
